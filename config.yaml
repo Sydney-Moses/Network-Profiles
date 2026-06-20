@@ -72,9 +72,7 @@ rules:
   - DOMAIN-KEYWORD,pstatp,🇺🇸 美国自动
   - DOMAIN-KEYWORD,bytedance,🇺🇸 美国自动
 
-  - RULE-SET,Advertising,REJECT
-  - RULE-SET,Privacy,REJECT
-  - RULE-SET,ChinaMax,DIRECT
+
 
   - DOMAIN-SUFFIX,github.com,🇺🇸 美国自动
   - DOMAIN-SUFFIX,githubusercontent.com,🇺🇸 美国自动
@@ -120,7 +118,10 @@ rules:
   - DOMAIN-SUFFIX,outlook.com,DIRECT
   - DOMAIN-SUFFIX,office.com,DIRECT
   - DOMAIN-SUFFIX,msauth.net,DIRECT
-
+  #远程规则集
+  - RULE-SET,Advertising,REJECT
+  - RULE-SET,Privacy,REJECT
+  - RULE-SET,ChinaMax,DIRECT
   #兜底策略
   - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT,no-resolve
