@@ -1,6 +1,3 @@
-name:iOS远程配置覆写
-description:DNS、策略组、自用分流等规则。
-
 #!override
 
 mixed-port: 7890
