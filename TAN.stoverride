@@ -90,6 +90,34 @@ rules: #!replace
   - DST-PORT,587,DIRECT
   - DST-PORT,993,DIRECT
   - DST-PORT,995,DIRECT
+rules:
+  # --- Apple ---
+  # Basic connection and time
+  - DOMAIN,time.apple.com,DIRECT
+  - DOMAIN,captive.apple.com,DIRECT
+  # Media and content
+  - DOMAIN-SUFFIX,mzstatic.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,aaplimg.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,music.apple.com,DIRECT
+  # Storage and backup
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
+  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+  - DOMAIN,gateway.icloud.com,DIRECT
+  # Download and update
+  - DOMAIN-SUFFIX,swcdn.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,updates.cdn-apple.com,🇺🇸 USA_Primary
+  # Push service
+  - DOMAIN-SUFFIX,push.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,push-apple.com.akadns.net,🇺🇸 USA_Primary
+  # App Store / iTunes
+  - DOMAIN,itunes.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,apps.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,itunes.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,appstore.com,🇺🇸 USA_Primary
+  - DOMAIN-KEYWORD,buy.itunes,🇺🇸 USA_Primary
+  - DOMAIN,bag.itunes.apple.com,🇺🇸 USA_Primary
+  - DOMAIN,storekit.itunes.apple.com,🇺🇸 USA_Primary
 
   #Microsoft
   - DOMAIN-KEYWORD,copilot,🇺🇸 USA_Primary
