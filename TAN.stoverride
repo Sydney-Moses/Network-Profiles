@@ -67,7 +67,7 @@ proxy-groups: #!replace
   - name: 🇺🇸 USA_Primary
     type: url-test
     include-all: true
-    filter: '(?i)(US|USA|United States|LosAngeles|SanJose|Seattle|Chicago|New York)'
+    filter: '(?i)(\[US\]|\bUS\b|USA|United States|LosAngeles|SanJose|Seattle|Chicago|New York)'
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
