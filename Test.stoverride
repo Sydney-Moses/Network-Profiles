@@ -38,3 +38,23 @@ dns: #!replace
     - '*.msftconnecttest.com'
     - '*.msftncsi.com'
     - stun.*
+
+profile: #!replace
+  store-selected: true
+  store-fake-ip: true
+
+#-------------------#
+# proxies:  #
+#-------------------#
+proxy-groups: #!replace
+  - name: 🌐 All nodes
+    type: select
+    include-all: true
+
+  - name: 🇺🇸 USA_Primary
+    type: url-test
+    include-all: true
+    filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
