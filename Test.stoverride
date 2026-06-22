@@ -44,7 +44,7 @@ profile: #!replace
   store-fake-ip: true
 
 #-------------------#
-# proxies:  #
+#proxies:
 #-------------------#
 proxy-groups: #!replace
   - name: 🌐 All nodes
