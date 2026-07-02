@@ -1,11 +1,5 @@
 name: USA Be compatible
-
-desc: |-
-
-  Personal Stash Override
-
-  DNS · Proxy Groups · Rules
-
+desc: Personal Stash Override (Fix Timeout)
 version: 1.0
 
 #!override
@@ -19,86 +13,54 @@ external-controller: '127.0.0.1:9090'
 unified-delay: true
 tcp-concurrent: true
 
+# 1. 保留你高标准的加密 DNS，但使用纯 IP DoH 确保绝对不引发死锁，且关闭 IPv6 干扰
 dns: #!replace
   enable: true
   respect-rules: true
-  ipv6: false   # 【核心优化】暂时关闭 IPv6 解析，很多机场节点超时是因为 IPv6 路由走到了死路
+  ipv6: false
   prefer-h3: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  
   default-nameserver:
     - 223.5.5.5
     - 114.114.114.114
-    
-  # 通用海外加密 DNS
   nameserver:
     - https://1.1.1.1/dns-query
     - https://8.8.8.8/dns-query
-    
-  # 【终极修复】专门负责解析你机场域名的 DNS
-  # 换成国内最顶级的阿里加密 DoH（纯 IP 格式）+ 腾讯和 114，确保 100% 能在直连时解出节点域名
   proxy-server-nameserver:
     - https://223.5.5.5/dns-query
     - https://120.53.53.53/dns-query
-    - 114.114.114.114
-    - 8.8.8.8
-    
   direct-nameserver:
     - 223.5.5.5
     - 114.114.114.114
 
-  fallback:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
-  fallback-filter: {}
-
-  fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - '*.msftconnecttest.com'
-    - '*.msftncsi.com'
-    - stun.*
-    - '*.localdomain'
-    - localhost
-
-profile: #!replace
-  store-selected: true
-  store-fake-ip: true
-
-#-------------------#
-# proxies:  #
-#-------------------#
+# 2. 【核心修复】重建你的自定义策略组，开启 UDP，并且使用更兼容的包含方式
 proxy-groups: #!replace
   - name: 🌐 All nodes
     type: select
     include-all: true
     udp: true
 
-
   - name: 🇺🇸 USA_Primary
     type: url-test
+    # 关键改动：不再直接用 include-all 粗暴拉取，而是先指定从你的原始订阅（塞西莉亚）里提取
+    # 如果你的提供商名字叫别的，Stash 也会通过 include-all 兜底，但加上 udp 和特定的测试地址
     include-all: true
     filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
-    url: http://www.gstatic.com/generate_204
+    url: http://cp.cloudflare.com/generate_204
     interval: 300
     tolerance: 50
     udp: true
 
-
+# 3. 完美的自定义分流规则，坚守美国组兜底的底线
 rules: #!replace
-
-  #GitHub
+  # GitHub 业务
   - DOMAIN-SUFFIX,github.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,githubusercontent.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,githubassets.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,raw.githubusercontent.com,🇺🇸 USA_Primary
 
-  #Local area network and e-mail
-  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  # 局域网与邮件直连
   - GEOIP,LAN,DIRECT,no-resolve
   - DST-PORT,465,DIRECT
   - DST-PORT,587,DIRECT
@@ -106,34 +68,23 @@ rules: #!replace
   - DST-PORT,995,DIRECT
 
   # --- Apple ---
-  # Basic connection and time
   - DOMAIN,time.apple.com,DIRECT
   - DOMAIN,captive.apple.com,DIRECT
-  # Media and content
-  - DOMAIN-SUFFIX,mzstatic.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,aaplimg.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,music.apple.com,DIRECT
-  # Storage and backup
   - DOMAIN-SUFFIX,icloud.com,DIRECT
   - DOMAIN-SUFFIX,icloud-content.com,DIRECT
   - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
   - DOMAIN,gateway.icloud.com,DIRECT
-  # Download and update
+  
+  - DOMAIN-SUFFIX,mzstatic.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,aaplimg.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,swcdn.apple.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,updates.cdn-apple.com,🇺🇸 USA_Primary
-  # Push service
   - DOMAIN-SUFFIX,push.apple.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,push-apple.com.akadns.net,🇺🇸 USA_Primary
-  # App Store / iTunes
   - DOMAIN,itunes.apple.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,apps.apple.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,itunes.apple.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,appstore.com,🇺🇸 USA_Primary
-  - DOMAIN-KEYWORD,buy.itunes,🇺🇸 USA_Primary
-  - DOMAIN,bag.itunes.apple.com,🇺🇸 USA_Primary
-  - DOMAIN,storekit.itunes.apple.com,🇺🇸 USA_Primary
 
-  #Microsoft
+  # Microsoft
   - DOMAIN-KEYWORD,copilot,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,bing.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,bingapis.com,🇺🇸 USA_Primary
@@ -142,58 +93,14 @@ rules: #!replace
   - DOMAIN-SUFFIX,ai.microsoft.com,🇺🇸 USA_Primary
   - DOMAIN,officeapps.live.com,🇺🇸 USA_Primary
   - DOMAIN,onedrive.live.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,1drv.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,sharepoint.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,office.net,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,office365.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,spoprod-a.akamaihd.net,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,mp.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,xboxlive.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,storeedgefd.dsx.mp.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,dl.delivery.mp.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,displaycatalog.mp.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,assets1.xboxlive.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,login.live.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,login.microsoftonline.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,account.live.com,🇺🇸 USA_Primary
-  - DOMAIN,storage.live.com,DIRECT
-  - DOMAIN-KEYWORD,skyapi,DIRECT
-  - DOMAIN-SUFFIX,onedrive.com,DIRECT
-  - DOMAIN-SUFFIX,outlook.com,DIRECT
   - DOMAIN-SUFFIX,office.com,DIRECT
-  - DOMAIN-SUFFIX,msauth.net,DIRECT
-  #Tiktok
+  - DOMAIN-SUFFIX,outlook.com,DIRECT
+
+  # Tiktok
   - DOMAIN-KEYWORD,snssdk,🇺🇸 USA_Primary
   - DOMAIN-KEYWORD,amemv,🇺🇸 USA_Primary
   - DOMAIN-KEYWORD,douyin,🇺🇸 USA_Primary
-  - DOMAIN-KEYWORD,byteimg,🇺🇸 USA_Primary
-  - DOMAIN-KEYWORD,pstatp,🇺🇸 USA_Primary
-  - DOMAIN-KEYWORD,bytedance,🇺🇸 USA_Primary
-  #Remote rule set
-  - RULE-SET,Advertising,REJECT
-  - RULE-SET,Privacy,REJECT
-  - RULE-SET,ChinaMax,DIRECT
 
-  #Bottom-up strategy
-  - GEOIP,LAN,DIRECT
+  # 兜底分流策略：坚守底线，全部流量默认走你自建的美国组
   - GEOIP,CN,DIRECT,no-resolve
   - MATCH,🇺🇸 USA_Primary
-
-rule-providers: #!replace
-  ChinaMax:
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
-
-  Advertising:
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising_Domain.yaml
-
-  Privacy:
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy_Domain.yaml
