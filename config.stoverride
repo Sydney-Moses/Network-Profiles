@@ -22,27 +22,35 @@ tcp-concurrent: true
 dns: #!replace
   enable: true
   respect-rules: true
-  ipv6: true
+  ipv6: false   # 【核心优化】暂时关闭 IPv6 解析，很多机场节点超时是因为 IPv6 路由走到了死路
   prefer-h3: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  
   default-nameserver:
-    - 1.1.1.1
-    - 8.8.8.8
-    - 2606:4700:4700::1111
-    - 2606:4700:4700::1001
+    - 223.5.5.5
+    - 114.114.114.114
+    
+  # 通用海外加密 DNS
   nameserver:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
-    - https://dns.quad9.net/dns-query
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+    
+  # 【终极修复】专门负责解析你机场域名的 DNS
+  # 换成国内最顶级的阿里加密 DoH（纯 IP 格式）+ 腾讯和 114，确保 100% 能在直连时解出节点域名
   proxy-server-nameserver:
-    - https://dns.google/dns-query
-  direct-nameserver: []
+    - https://223.5.5.5/dns-query
+    - https://120.53.53.53/dns-query
+    - 114.114.114.114
+    - 8.8.8.8
+    
+  direct-nameserver:
+    - 223.5.5.5
+    - 114.114.114.114
 
   fallback:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
-    - https://dns.quad9.net/dns-query
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
   fallback-filter: {}
 
   fake-ip-filter:
@@ -51,6 +59,9 @@ dns: #!replace
     - '*.msftconnecttest.com'
     - '*.msftncsi.com'
     - stun.*
+    - '*.localdomain'
+    - localhost
+
 
 profile: #!replace
   store-selected: true
