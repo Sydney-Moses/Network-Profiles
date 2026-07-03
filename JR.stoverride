@@ -52,15 +52,20 @@ proxy-groups: #!replace
     tolerance: 50
     udp: true
 
-# 3. 完美的自定义分流规则，坚守美国组兜底的底线
+
 rules: #!replace
-  # GitHub 业务
+
+  #GitHub
   - DOMAIN-SUFFIX,github.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,githubusercontent.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,githubassets.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,raw.githubusercontent.com,🇺🇸 USA_Primary
 
-  # 局域网与邮件直连
+  #Local area network and e-mail
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - GEOIP,LAN,DIRECT,no-resolve
   - DST-PORT,465,DIRECT
   - DST-PORT,587,DIRECT
@@ -68,23 +73,34 @@ rules: #!replace
   - DST-PORT,995,DIRECT
 
   # --- Apple ---
+  # Basic connection and time
   - DOMAIN,time.apple.com,DIRECT
   - DOMAIN,captive.apple.com,DIRECT
+  # Media and content
+  - DOMAIN-SUFFIX,mzstatic.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,aaplimg.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,music.apple.com,DIRECT
+  # Storage and backup
   - DOMAIN-SUFFIX,icloud.com,DIRECT
   - DOMAIN-SUFFIX,icloud-content.com,DIRECT
   - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
   - DOMAIN,gateway.icloud.com,DIRECT
-  
-  - DOMAIN-SUFFIX,mzstatic.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,aaplimg.com,🇺🇸 USA_Primary
+  # Download and update
   - DOMAIN-SUFFIX,swcdn.apple.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,updates.cdn-apple.com,🇺🇸 USA_Primary
+  # Push service
   - DOMAIN-SUFFIX,push.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,push-apple.com.akadns.net,🇺🇸 USA_Primary
+  # App Store / iTunes
   - DOMAIN,itunes.apple.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,apps.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,itunes.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,appstore.com,🇺🇸 USA_Primary
+  - DOMAIN-KEYWORD,buy.itunes,🇺🇸 USA_Primary
+  - DOMAIN,bag.itunes.apple.com,🇺🇸 USA_Primary
+  - DOMAIN,storekit.itunes.apple.com,🇺🇸 USA_Primary
 
-  # Microsoft
+  #Microsoft
   - DOMAIN-KEYWORD,copilot,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,bing.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,bingapis.com,🇺🇸 USA_Primary
@@ -93,14 +109,40 @@ rules: #!replace
   - DOMAIN-SUFFIX,ai.microsoft.com,🇺🇸 USA_Primary
   - DOMAIN,officeapps.live.com,🇺🇸 USA_Primary
   - DOMAIN,onedrive.live.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,office.com,DIRECT
+  - DOMAIN-SUFFIX,1drv.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,sharepoint.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,office.net,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,office365.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,spoprod-a.akamaihd.net,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,mp.microsoft.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,xboxlive.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,storeedgefd.dsx.mp.microsoft.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,dl.delivery.mp.microsoft.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,displaycatalog.mp.microsoft.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,assets1.xboxlive.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,login.live.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,login.microsoftonline.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,account.live.com,🇺🇸 USA_Primary
+  - DOMAIN,storage.live.com,DIRECT
+  - DOMAIN-KEYWORD,skyapi,DIRECT
+  - DOMAIN-SUFFIX,onedrive.com,DIRECT
   - DOMAIN-SUFFIX,outlook.com,DIRECT
-
-  # Tiktok
+  - DOMAIN-SUFFIX,office.com,DIRECT
+  - DOMAIN-SUFFIX,msauth.net,DIRECT
+  #Tiktok
   - DOMAIN-KEYWORD,snssdk,🇺🇸 USA_Primary
   - DOMAIN-KEYWORD,amemv,🇺🇸 USA_Primary
   - DOMAIN-KEYWORD,douyin,🇺🇸 USA_Primary
+  - DOMAIN-KEYWORD,byteimg,🇺🇸 USA_Primary
+  - DOMAIN-KEYWORD,pstatp,🇺🇸 USA_Primary
+  - DOMAIN-KEYWORD,bytedance,🇺🇸 USA_Primary
+  #Remote rule set
+  - RULE-SET,Advertising,REJECT
+  - RULE-SET,Privacy,REJECT
+  - RULE-SET,ChinaMax,DIRECT
 
-  # 兜底分流策略：坚守底线，全部流量默认走你自建的美国组
+  #Bottom-up strategy
+  - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT,no-resolve
   - MATCH,🇺🇸 USA_Primary
+
