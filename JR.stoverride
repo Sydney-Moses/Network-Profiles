@@ -138,7 +138,6 @@ rules: #!replace
   - DOMAIN-KEYWORD,bytedance,🇺🇸 USA_Primary
   #Remote rule set
   - RULE-SET,Advertising,REJECT
-  - RULE-SET,ChinaMax,DIRECT
 
   #Bottom-up strategy
   - GEOIP,LAN,DIRECT
@@ -146,12 +145,6 @@ rules: #!replace
   - MATCH,🇺🇸 USA_Primary
 
 rule-providers: #!replace
-  ChinaMax:
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
-
   Advertising:
     behavior: domain
     format: yaml
