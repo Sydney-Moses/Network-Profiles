@@ -6,7 +6,7 @@ desc: |-
 
   DNS · Proxy Groups · Rules
 
-version: 1.0
+version: 2.0
 
 #!override
 
@@ -29,7 +29,11 @@ dns: #!replace
 
   default-nameserver:
     - 223.5.5.5
-    - 119.29.29.29
+    - 208.67.222.222
+    - 208.67.220.220
+    - 1.1.1.1
+    - 8.8.8.8
+    - 9.9.9.9
 
   nameserver:
     - https://edge.microsoft.com/dns-query
@@ -42,8 +46,7 @@ dns: #!replace
     - https://edge.microsoft.com/dns-query
     - https://dns.google/dns-query
     - https://dns.cloudflare.com/dns-query
-    - 223.5.5.5
-    - 119.29.29.29
+    - https://dns.alidns.com/dns-query
 
   direct-nameserver: {}
 
@@ -73,26 +76,49 @@ profile: #!replace
   store-selected: true
   store-fake-ip: true
 
+#-------------------#
+# proxies:  #
+#-------------------#
 proxy-groups: #!replace
-  - name: 🌐 All nodes
+  - name: Proxy-Gate
     type: select
-    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png
+    proxies:
+      - 🇺🇸 USA_Auto
+      - 🇸🇬 SG_Auto
+      - Custom-Gate
+      - DIRECT
 
-  - name: 🇺🇸 USA_Primary
+  - name: 🇺🇸 USA_Auto
     type: url-test
     include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
     filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
 
+  - name: 🇸🇬 SG_Auto
+    type: url-test
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
+    filter: '(?i)(\[SG\]|^SG$|Singapore|\bSG\b|新加坡|狮城)'
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+
+  - name: Custom-Gate
+    type: select
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
+
 rules: #!replace
 
   #GitHub
-  - DOMAIN-SUFFIX,github.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,githubusercontent.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,githubassets.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,raw.githubusercontent.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,github.com,Proxy-Gate
+  - DOMAIN-SUFFIX,githubusercontent.com,Proxy-Gate
+  - DOMAIN-SUFFIX,githubassets.com,Proxy-Gate
+  - DOMAIN-SUFFIX,raw.githubusercontent.com,Proxy-Gate
 
   #Local area network and e-mail
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
@@ -110,8 +136,8 @@ rules: #!replace
   - DOMAIN,time.apple.com,DIRECT
   - DOMAIN,captive.apple.com,DIRECT
   # Media and content
-  - DOMAIN-SUFFIX,mzstatic.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,aaplimg.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,mzstatic.com,Proxy-Gate
+  - DOMAIN-SUFFIX,aaplimg.com,Proxy-Gate
   - DOMAIN-SUFFIX,music.apple.com,DIRECT
   # Storage and backup
   - DOMAIN-SUFFIX,icloud.com,DIRECT
@@ -119,43 +145,43 @@ rules: #!replace
   - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
   - DOMAIN,gateway.icloud.com,DIRECT
   # Download and update
-  - DOMAIN-SUFFIX,swcdn.apple.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,updates.cdn-apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,swcdn.apple.com,Proxy-Gate
+  - DOMAIN-SUFFIX,updates.cdn-apple.com,Proxy-Gate
   # Push service
-  - DOMAIN-SUFFIX,push.apple.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,push-apple.com.akadns.net,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,push.apple.com,Proxy-Gate
+  - DOMAIN-SUFFIX,push-apple.com.akadns.net,Proxy-Gate
   # App Store / iTunes
-  - DOMAIN,itunes.apple.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,apps.apple.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,itunes.apple.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,appstore.com,🇺🇸 USA_Primary
-  - DOMAIN-KEYWORD,buy.itunes,🇺🇸 USA_Primary
-  - DOMAIN,bag.itunes.apple.com,🇺🇸 USA_Primary
-  - DOMAIN,storekit.itunes.apple.com,🇺🇸 USA_Primary
+  - DOMAIN,itunes.apple.com,Proxy-Gate
+  - DOMAIN-SUFFIX,apps.apple.com,Proxy-Gate
+  - DOMAIN-SUFFIX,itunes.apple.com,Proxy-Gate
+  - DOMAIN-SUFFIX,appstore.com,Proxy-Gate
+  - DOMAIN-KEYWORD,buy.itunes,Proxy-Gate
+  - DOMAIN,bag.itunes.apple.com,Proxy-Gate
+  - DOMAIN,storekit.itunes.apple.com,Proxy-Gate
 
   #Microsoft
-  - DOMAIN-KEYWORD,copilot,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,bing.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,bingapis.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,designer.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,copilot.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,ai.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN,officeapps.live.com,🇺🇸 USA_Primary
-  - DOMAIN,onedrive.live.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,1drv.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,sharepoint.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,office.net,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,office365.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,spoprod-a.akamaihd.net,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,mp.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,xboxlive.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,storeedgefd.dsx.mp.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,dl.delivery.mp.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,displaycatalog.mp.microsoft.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,assets1.xboxlive.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,login.live.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,login.microsoftonline.com,🇺🇸 USA_Primary
-  - DOMAIN-SUFFIX,account.live.com,🇺🇸 USA_Primary
+  - DOMAIN-KEYWORD,copilot,Proxy-Gate
+  - DOMAIN-SUFFIX,bing.com,Proxy-Gate
+  - DOMAIN-SUFFIX,bingapis.com,Proxy-Gate
+  - DOMAIN-SUFFIX,designer.microsoft.com,Proxy-Gate
+  - DOMAIN-SUFFIX,copilot.microsoft.com,Proxy-Gate
+  - DOMAIN-SUFFIX,ai.microsoft.com,Proxy-Gate
+  - DOMAIN,officeapps.live.com,Proxy-Gate
+  - DOMAIN,onedrive.live.com,Proxy-Gate
+  - DOMAIN-SUFFIX,1drv.com,Proxy-Gate
+  - DOMAIN-SUFFIX,sharepoint.com,Proxy-Gate
+  - DOMAIN-SUFFIX,office.net,Proxy-Gate
+  - DOMAIN-SUFFIX,office365.com,Proxy-Gate
+  - DOMAIN-SUFFIX,spoprod-a.akamaihd.net,Proxy-Gate
+  - DOMAIN-SUFFIX,mp.microsoft.com,Proxy-Gate
+  - DOMAIN-SUFFIX,xboxlive.com,Proxy-Gate
+  - DOMAIN-SUFFIX,storeedgefd.dsx.mp.microsoft.com,Proxy-Gate
+  - DOMAIN-SUFFIX,dl.delivery.mp.microsoft.com,Proxy-Gate
+  - DOMAIN-SUFFIX,displaycatalog.mp.microsoft.com,Proxy-Gate
+  - DOMAIN-SUFFIX,assets1.xboxlive.com,Proxy-Gate
+  - DOMAIN-SUFFIX,login.live.com,Proxy-Gate
+  - DOMAIN-SUFFIX,login.microsoftonline.com,Proxy-Gate
+  - DOMAIN-SUFFIX,account.live.com,Proxy-Gate
   - DOMAIN,storage.live.com,DIRECT
   - DOMAIN-KEYWORD,skyapi,DIRECT
   - DOMAIN-SUFFIX,onedrive.com,DIRECT
@@ -163,19 +189,20 @@ rules: #!replace
   - DOMAIN-SUFFIX,office.com,DIRECT
   - DOMAIN-SUFFIX,msauth.net,DIRECT
   #Tiktok
-  - DOMAIN-KEYWORD,snssdk,🇺🇸 USA_Primary
-  - DOMAIN-KEYWORD,amemv,🇺🇸 USA_Primary
-  - DOMAIN-KEYWORD,douyin,🇺🇸 USA_Primary
-  - DOMAIN-KEYWORD,byteimg,🇺🇸 USA_Primary
-  - DOMAIN-KEYWORD,pstatp,🇺🇸 USA_Primary
-  - DOMAIN-KEYWORD,bytedance,🇺🇸 USA_Primary
+  - DOMAIN-KEYWORD,snssdk,Proxy-Gate
+  - DOMAIN-KEYWORD,amemv,Proxy-Gate
+  - DOMAIN-KEYWORD,douyin,Proxy-Gate
+  - DOMAIN-KEYWORD,byteimg,Proxy-Gate
+  - DOMAIN-KEYWORD,pstatp,Proxy-Gate
+  - DOMAIN-KEYWORD,bytedance,Proxy-Gate
   #Remote rule set
+  - RULE-SET,Privacy,REJECT
   - RULE-SET,ChinaMax,DIRECT
 
   #Bottom-up strategy
   - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT,no-resolve
-  - MATCH,🇺🇸 USA_Primary
+  - MATCH,Proxy-Gate
 
 rule-providers: #!replace
   ChinaMax:
@@ -183,3 +210,9 @@ rule-providers: #!replace
     format: yaml
     interval: 86400
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
+
+  Privacy:
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy_Domain.yaml
