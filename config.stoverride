@@ -34,6 +34,7 @@ dns: #!replace
     - 1.1.1.1
     - 8.8.8.8
     - 9.9.9.9
+    - '[2400:3200::1]'
 
   nameserver:
     - https://edge.microsoft.com/dns-query
