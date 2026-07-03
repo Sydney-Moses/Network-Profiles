@@ -1,8 +1,8 @@
-Name: USA Override2
+Name: USA Override 2.0
 desc: |-
   Personal Stash Override
-  DNS · Proxy Groups · Rules
-version: 1.0
+  远程规则集修复 + 美国组全面兜底
+version: 1.1
 
 #!override
 
@@ -48,6 +48,7 @@ dns: #!replace
     - '*.local'
     - '*.msftconnecttest.com'
     - '*.msftncsi.com'
+    # 锁定机场节点域名，防止解析死循环
     - 'pemby.ednovas.org'
     - 'shh.ysqhq.top'
     - 'dde.ysqhq.top'
@@ -65,14 +66,13 @@ proxy-groups: #!replace
   - name: 🇺🇸 USA_Primary
     type: url-test
     include-all: true
-    # 如果机场没有美国节点，自动回退到“🌐 All nodes”里的第一个可用节点，防止断网
     filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
 
 rules: #!replace
-  # GitHub
+  # GitHub (优先保证规则集能下载)
   - DOMAIN-SUFFIX,github.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,githubusercontent.com,🇺🇸 USA_Primary
   - DOMAIN-SUFFIX,githubassets.com,🇺🇸 USA_Primary
@@ -89,7 +89,7 @@ rules: #!replace
   - DST-PORT,993,DIRECT
   - DST-PORT,995,DIRECT
 
-  # --- Apple 核心服务 ---
+  # --- Apple 核心分流 ---
   - DOMAIN,time.apple.com,DIRECT
   - DOMAIN,captive.apple.com,DIRECT
   - DOMAIN-SUFFIX,music.apple.com,DIRECT
@@ -151,7 +151,31 @@ rules: #!replace
   - DOMAIN-KEYWORD,pstatp,🇺🇸 USA_Primary
   - DOMAIN-KEYWORD,bytedance,🇺🇸 USA_Primary
 
-  # 兜底分流策略（使用设备自带库，不依赖外部链接）
+  # 远程规则集（已恢复）
+  - RULE-SET,Advertising,REJECT
+  - RULE-SET,Privacy,REJECT
+  - RULE-SET,ChinaMax,DIRECT
+
+  # 底部兜底策略（已修改为默认美国节点）
   - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT,no-resolve
-  - MATCH,🌐 All nodes
+  - MATCH,🇺🇸 USA_Primary
+
+rule-providers: #!replace
+  ChinaMax:
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
+
+  Advertising:
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising_Domain.yaml
+
+  Privacy:
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy_Domain.yaml
