@@ -29,10 +29,11 @@ dns: #!replace
 
   default-nameserver:
     - 223.5.5.5
+    - 208.67.222.222
+    - 208.67.220.220
     - 1.1.1.1
     - 8.8.8.8
     - 9.9.9.9
-
 
   nameserver:
     - https://edge.microsoft.com/dns-query
@@ -45,7 +46,6 @@ dns: #!replace
     - https://dns.google/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://dns.alidns.com/dns-query
-    - 223.5.5.5
 
   direct-nameserver: {}
 
@@ -66,7 +66,6 @@ dns: #!replace
     - '*.local'
     - '*.msftconnecttest.com'
     - '*.msftncsi.com'
-# 锁定机场节点域名，防止解析死循环
     - 'pemby.ednovas.org'
     - 'shh.ysqhq.top'
     - 'dde.ysqhq.top'
