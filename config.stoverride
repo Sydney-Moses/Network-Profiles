@@ -40,7 +40,6 @@ dns: #!replace
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
     - https://dns.quad9.net/dns-query
-    - https://dns.alidns.com/dns-query
 
   nameserver-policy:
     '*.ednovas.org': https://dns.alidns.com/dns-query
