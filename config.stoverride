@@ -1,4 +1,4 @@
-name: USA Override
+name: USA Override CN
 
 desc: |-
 
@@ -15,61 +15,64 @@ allow-lan: true
 bind-address: '*'
 mode: rule
 log-level: info
-external-controller: '127.0.0.1:9090'
+external-controller: ':9090'
 unified-delay: true
 tcp-concurrent: true
 
 dns: #!replace
   enable: true
   respect-rules: true
-  ipv6: false   # 【核心优化】暂时关闭 IPv6 解析，很多机场节点超时是因为 IPv6 路由走到了死路
+  ipv6: true
   prefer-h3: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  
+
   default-nameserver:
     - 223.5.5.5
-    - 114.114.114.114
-    
-  # 通用海外加密 DNS
+    - 119.29.29.29
+
   nameserver:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
-    
-  # 【终极修复】专门负责解析你机场域名的 DNS
-  # 换成国内最顶级的阿里加密 DoH（纯 IP 格式）+ 腾讯和 114，确保 100% 能在直连时解出节点域名
+    - https://edge.microsoft.com/dns-query
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
+    - https://dns.alidns.com/dns-query
+
   proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
-    - https://120.53.53.53/dns-query
-    - 114.114.114.114
-    - 8.8.8.8
-    
-  direct-nameserver:
+    - https://edge.microsoft.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.cloudflare.com/dns-query
     - 223.5.5.5
-    - 114.114.114.114
+    - 119.29.29.29
+
+  direct-nameserver: {}
 
   fallback:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
-  fallback-filter: {}
+    - https://edge.microsoft.com/dns-query
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
 
   fake-ip-filter:
     - '*.lan'
     - '*.local'
     - '*.msftconnecttest.com'
     - '*.msftncsi.com'
+    - 'pemby.ednovas.org'
+    - 'shh.ysqhq.top'
+    - 'dde.ysqhq.top'
     - stun.*
-    - '*.localdomain'
-    - localhost
-
 
 profile: #!replace
   store-selected: true
   store-fake-ip: true
 
-#-------------------#
-# proxies:  #
-#-------------------#
 proxy-groups: #!replace
   - name: 🌐 All nodes
     type: select
@@ -78,7 +81,7 @@ proxy-groups: #!replace
   - name: 🇺🇸 USA_Primary
     type: url-test
     include-all: true
-    filter: '(?i)(USA|United States|LosAngeles|SanJose|Seattle|Chicago|New York)'
+    filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -101,6 +104,34 @@ rules: #!replace
   - DST-PORT,587,DIRECT
   - DST-PORT,993,DIRECT
   - DST-PORT,995,DIRECT
+
+  # --- Apple ---
+  # Basic connection and time
+  - DOMAIN,time.apple.com,DIRECT
+  - DOMAIN,captive.apple.com,DIRECT
+  # Media and content
+  - DOMAIN-SUFFIX,mzstatic.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,aaplimg.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,music.apple.com,DIRECT
+  # Storage and backup
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
+  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+  - DOMAIN,gateway.icloud.com,DIRECT
+  # Download and update
+  - DOMAIN-SUFFIX,swcdn.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,updates.cdn-apple.com,🇺🇸 USA_Primary
+  # Push service
+  - DOMAIN-SUFFIX,push.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,push-apple.com.akadns.net,🇺🇸 USA_Primary
+  # App Store / iTunes
+  - DOMAIN,itunes.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,apps.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,itunes.apple.com,🇺🇸 USA_Primary
+  - DOMAIN-SUFFIX,appstore.com,🇺🇸 USA_Primary
+  - DOMAIN-KEYWORD,buy.itunes,🇺🇸 USA_Primary
+  - DOMAIN,bag.itunes.apple.com,🇺🇸 USA_Primary
+  - DOMAIN,storekit.itunes.apple.com,🇺🇸 USA_Primary
 
   #Microsoft
   - DOMAIN-KEYWORD,copilot,🇺🇸 USA_Primary
@@ -139,8 +170,6 @@ rules: #!replace
   - DOMAIN-KEYWORD,pstatp,🇺🇸 USA_Primary
   - DOMAIN-KEYWORD,bytedance,🇺🇸 USA_Primary
   #Remote rule set
-  - RULE-SET,Advertising,REJECT
-  - RULE-SET,Privacy,REJECT
   - RULE-SET,ChinaMax,DIRECT
 
   #Bottom-up strategy
@@ -154,15 +183,3 @@ rule-providers: #!replace
     format: yaml
     interval: 86400
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
-
-  Advertising:
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising_Domain.yaml
-
-  Privacy:
-    behavior: domain
-    format: yaml
-    interval: 86400
-    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy_Domain.yaml
