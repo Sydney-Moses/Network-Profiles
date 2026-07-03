@@ -1,12 +1,12 @@
-name: Stash Override（DNS-CN）
+name: Stash Ednovas Override
 
 desc: |-
 
-  Personal Stash Override（US SG）
-
+  Personal Stash Override
   DNS · Proxy Groups · Rules
+  Ednovas｛DNS-CN｝ Proxy-Gate{USA/SG/Custom-Gate}
 
-version: 2026.7.3
+version: 3.0 / 03-07-2026
 
 #!override
 
