@@ -94,7 +94,7 @@ proxy-groups: #!replace
     proxies:
       - 🇺🇸 USA_Auto
       - 🇸🇬 SG_Auto
-      - Custom-Gate
+      - 🌐 Custom-Gate
       - DIRECT
 
   - name: 🇺🇸 USA_Auto
@@ -115,7 +115,7 @@ proxy-groups: #!replace
     interval: 300
     tolerance: 50
 
-  - name: Custom-Gate
+  - name: 🌐 Custom-Gate
     type: select
     include-all: true
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
