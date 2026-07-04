@@ -1,7 +1,7 @@
 name: Stash Override
 
 desc: |-
-  [[DNS · Proxy Groups · Rules]]
+  DNS · Proxy Groups · Rules
 
   Encrypted DNS:
    - DoH IPv6/IPv4
