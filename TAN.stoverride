@@ -44,6 +44,7 @@ dns: #!replace
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
     - https://dns.quad9.net/dns-query
+    - 223.5.5.5
 
   proxy-server-nameserver:
     - https://edge.microsoft.com/dns-query
@@ -71,9 +72,6 @@ dns: #!replace
     - '*.local'
     - '*.msftconnecttest.com'
     - '*.msftncsi.com'
-    - 'pemby.ednovas.org'
-    - 'shh.ysqhq.top'
-    - 'dde.ysqhq.top'
     - stun.*
 
 profile: #!replace
@@ -199,22 +197,6 @@ rules: #!replace
   - DOMAIN-KEYWORD,byteimg,Proxy-Gate
   - DOMAIN-KEYWORD,pstatp,Proxy-Gate
   - DOMAIN-KEYWORD,bytedance,Proxy-Gate
-  # WeChat
-  - DOMAIN-SUFFIX,weixin.com,DIRECT
-  - DOMAIN-SUFFIX,wechat.com,DIRECT
-  - DOMAIN-SUFFIX,qq.com,DIRECT
-  - DOMAIN-SUFFIX,tencent.com,DIRECT
-  # Meituan
-  - DOMAIN-SUFFIX,meituan.com,DIRECT
-  - DOMAIN-SUFFIX,meituan.net,DIRECT
-  - DOMAIN-SUFFIX,dpfile.com,DIRECT
-  - DOMAIN-SUFFIX,dianping.com,DIRECT
-  # Eleme
-  - DOMAIN-SUFFIX,ele.me,DIRECT
-  - DOMAIN-SUFFIX,elemecdn.com,DIRECT
-  # Kugou
-  - DOMAIN-SUFFIX,kugou.com,DIRECT
-  - DOMAIN-SUFFIX,kgimg.com,DIRECT
 
   #Remote rule set
   - RULE-SET,Privacy,REJECT
