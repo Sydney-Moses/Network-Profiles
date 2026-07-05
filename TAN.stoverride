@@ -50,7 +50,6 @@ dns: #!replace
     - https://edge.microsoft.com/dns-query
     - https://dns.google/dns-query
     - https://dns.cloudflare.com/dns-query
-    - https://dns.alidns.com/dns-query
 
   direct-nameserver: {}
 
