@@ -59,6 +59,13 @@ dns: #!replace
     - 223.5.5.5
     - 119.29.29.29
 
+  nameserver-policy:
+    '+.weixin.com': [https://dns.alidns.com/dns-query]
+    '+.wechat.com': [https://dns.alidns.com/dns-query]
+    '+.qq.com': [https://dns.alidns.com/dns-query]
+    '+.tencent.com': [https://dns.alidns.com/dns-query]
+    '+.qpic.cn': [https://dns.alidns.com/dns-query]
+
 
   fallback:
     - https://edge.microsoft.com/dns-query
@@ -209,6 +216,7 @@ rules: #!replace
   - DOMAIN-SUFFIX,wxapp.qq.com,DIRECT
   - DOMAIN-SUFFIX,work.weixin.qq.com,DIRECT
   - DOMAIN-SUFFIX,res.wx.qq.com,DIRECT
+  - DOMAIN-KEYWORD,udp-over-tcp,DIRECT
   #Meituan
   - DOMAIN-SUFFIX,meituan.com,DIRECT
   - DOMAIN-SUFFIX,meituan.net,DIRECT
