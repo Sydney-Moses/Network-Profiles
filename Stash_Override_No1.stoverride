@@ -45,9 +45,6 @@ dns: #!replace
     - https://dns.quad9.net/dns-query
 
   proxy-server-nameserver:
-    - https://edge.microsoft.com/dns-query
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
     - https://1.1.1.1/dns-query
     - https://8.8.8.8/dns-query
     - tls://1.1.1.1:853
@@ -55,6 +52,9 @@ dns: #!replace
     - tls://1.0.0.1:853
     - tls://8.8.4.4:853
     - tls://9.9.9.9:853
+    - https://edge.microsoft.com/dns-query
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
 
   direct-nameserver:
     - https://dns.alidns.com/dns-query
