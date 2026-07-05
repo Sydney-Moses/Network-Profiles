@@ -1,7 +1,7 @@
-name: Stash Override
+Name: Stash Override
 
 desc: |-
-  DNS · Proxy Groups · Rules
+  [[DNS · Proxy Groups · Rules]]
 
   Encrypted DNS:
    - DoH IPv6/IPv4
@@ -44,10 +44,13 @@ dns: #!replace
     - https://edge.microsoft.com/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
 
   proxy-server-nameserver:
-    - https://dns.quad9.net/dns-query
-    - https://dns.mullvad.net/dns-query
+    - https://edge.microsoft.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.alidns.com/dns-query
 
   direct-nameserver: {}
 
@@ -55,16 +58,13 @@ dns: #!replace
     - https://edge.microsoft.com/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
 
   fallback-filter:
     geoip: true
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
-
-  nameserver-policy:
-    "dns.quad9.net,dns.mullvad.net":
-      - 223.5.5.5
 
   fake-ip-filter:
     - '*.lan'
