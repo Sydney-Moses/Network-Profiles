@@ -34,8 +34,6 @@ dns: #!replace
   default-nameserver:
     - 223.5.5.5
     - 223.6.6.6
-    - 208.67.222.222
-    - 208.67.220.220
     - 1.1.1.1
     - 8.8.8.8
     - 9.9.9.9
@@ -51,7 +49,7 @@ dns: #!replace
     - https://edge.microsoft.com/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
-
+    - https://dns.alidns.com/dns-query
 
   direct-nameserver: {}
 
