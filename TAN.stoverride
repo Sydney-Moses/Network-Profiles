@@ -51,6 +51,7 @@ dns: #!replace
     - https://dns.google/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://dns.alidns.com/dns-query
+    - 223.5.5.5
 
   direct-nameserver: {}
 
