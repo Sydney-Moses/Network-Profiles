@@ -6,7 +6,7 @@ desc: |-
   Encrypted DNS:
    - DoH/IPv6/IPv4
   Policy Groups:
-   - PROXY-Gate {USA/SG/Custom-Gate}
+   - PROXY-Gate {Custom-Gate/US/SG/HK/JP}
   Rules:
    - Global / Customize / CN
 
