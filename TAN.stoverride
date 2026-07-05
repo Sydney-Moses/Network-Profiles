@@ -57,9 +57,6 @@ dns: #!replace
       - 223.5.5.5
       - 223.6.6.6
 
-    "dns.quad9.net,dns.mullvad.net":
-      - 223.5.5.5
-
   nameserver:
     - https://edge.microsoft.com/dns-query
     - https://dns.cloudflare.com/dns-query
