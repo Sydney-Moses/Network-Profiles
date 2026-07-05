@@ -50,6 +50,7 @@ dns: #!replace
     - https://edge.microsoft.com/dns-query
     - https://dns.google/dns-query
     - https://dns.cloudflare.com/dns-query
+    - https://dns.alidns.com/dns-query
 
   direct-nameserver: {}
 
@@ -64,6 +65,13 @@ dns: #!replace
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
+
+  nameserver-policy:
+    "*.weixin.com,*.wechat.com,*.qq.com,*.tencent.com":
+      - 223.5.5.5
+    "*.meituan.com,*.meituan.net,*.dpfile.com,*.dianping.com":
+      - 223.5.5.5
+
 
   fake-ip-filter:
     - '*.lan'
