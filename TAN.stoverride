@@ -1,7 +1,7 @@
 name: Stash Override
 
 desc: |-
-  DNS · Proxy Groups · Rules
+  [[DNS · Proxy Groups · Rules]]
 
   Encrypted DNS:
    - DoH IPv6/IPv4
@@ -48,8 +48,8 @@ dns: #!replace
 
   proxy-server-nameserver:
     - https://edge.microsoft.com/dns-query
-    - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
+    - https://dns.cloudflare.com/dns-query
     - https://dns.alidns.com/dns-query
 
   direct-nameserver: {}
