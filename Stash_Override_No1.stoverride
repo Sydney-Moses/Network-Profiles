@@ -159,7 +159,7 @@ rules: #!replace
   - DST-PORT,993,DIRECT
   - DST-PORT,995,DIRECT
 
-  #==================#
+  #=========Custom rules=========#
   # Apple
   # Basic connection and time
   - DOMAIN,time.apple.com,DIRECT
@@ -246,7 +246,7 @@ rules: #!replace
   - DOMAIN-SUFFIX,kugoustore.com,DIRECT
   - DOMAIN-SUFFIX,kugouvoice.com,DIRECT
   - DOMAIN-SUFFIX,kugouyouth.com,DIRECT
-  #==================#
+  #=========End of custom rules=========#
 
   #Remote rule set
   - RULE-SET,Privacy,REJECT
