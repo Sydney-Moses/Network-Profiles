@@ -31,6 +31,7 @@ dns: #!replace
 
   default-nameserver:
     - 223.5.5.5
+    - 119.29.29.29
 
   nameserver:
     - https://dns.cloudflare.com/dns-query
@@ -38,13 +39,6 @@ dns: #!replace
     - https://dns.quad9.net/dns-query
 
   proxy-server-nameserver:
-    - https://1.1.1.1/dns-query
-    - https://8.8.8.8/dns-query
-    - tls://1.1.1.1:853
-    - tls://8.8.8.8:853
-    - tls://1.0.0.1:853
-    - tls://8.8.4.4:853
-    - tls://9.9.9.9:853
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
     - https://dns.quad9.net/dns-query
