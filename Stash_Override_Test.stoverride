@@ -30,8 +30,7 @@ dns: #!replace
   fake-ip-range: 198.18.0.1/16
 
   default-nameserver:
-    - tls://1.1.1.1:853
-    - tls://8.8.8.8:853
+    - 223.5.5.5
 
   nameserver:
     - https://dns.cloudflare.com/dns-query
