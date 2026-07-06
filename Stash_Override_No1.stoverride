@@ -4,7 +4,6 @@ category: Production
 desc: |-
   DNS｜Proxy Groups｜Rules
   Version: 1.0
-
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
