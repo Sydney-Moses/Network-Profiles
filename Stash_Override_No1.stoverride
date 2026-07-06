@@ -39,7 +39,6 @@ dns: #!replace
     - '[2400:3200::1]'
 
   nameserver:
-    - https://edge.microsoft.com/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
     - https://dns.quad9.net/dns-query
@@ -51,10 +50,7 @@ dns: #!replace
     - tls://8.8.8.8:853
     - tls://1.0.0.1:853
     - tls://8.8.4.4:853
-    - tls://9.9.9.9:853
-    - https://edge.microsoft.com/dns-query
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+    - tls://9.9.9.9:
 
   direct-nameserver:
     - https://dns.alidns.com/dns-query
