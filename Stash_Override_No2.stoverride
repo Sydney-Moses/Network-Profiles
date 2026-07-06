@@ -5,11 +5,11 @@ desc: |-
   DNS｜Proxy Groups｜Rules
   Version: 1.5｜2026-07-07
   Encrypted DNS:
-   - DoH / DoT / IPv6 / IPv4
+   - DoT(DoH)｜IPv6｜IPv4
   Policy Groups:
    - PROXY-Gate {Custom-Gate/US/SG/HK/JP}
   Rules:
-   - Customize / CN
+   - Customize｜CN
    - MATCH -> PROXY-Gate (Default Fallback)
   Notes:
    Optimized for poor networks;
