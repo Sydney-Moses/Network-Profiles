@@ -10,8 +10,8 @@ desc: |-
   Rules:
    - Customize / CN
    - MATCH -> PROXY-Gate (Default Fallback)
-
-
+  Notes:
+   Optimized for poor network conditions or when node domain resolution times out.
 
 #!override
 
