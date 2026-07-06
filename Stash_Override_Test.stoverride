@@ -2,7 +2,7 @@ name: Stash Babet
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.5/07-05-2026
+  Version: 1.6/07-05-2026
   Encrypted DNS:
    - DoH/IPv6/IPv4
   Policy Groups:
