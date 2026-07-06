@@ -11,8 +11,8 @@ desc: |-
    - Customize / CN
    - MATCH -> PROXY-Gate (Default Fallback)
   Notes:
-   Optimized for poor network conditions;
-   Best used during node resolution timeouts.
+   Optimized for poor networks;
+   Fixes domain resolution timeout.
 
 #!override
 
