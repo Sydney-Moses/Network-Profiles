@@ -2,7 +2,7 @@ name: Stash Cecilia Override
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.1｜07-05-2026
+  Version: 2026-07-07｜1.0
   Encrypted DNS:
    - DoH/IPv6/IPv4
   Policy Groups:
