@@ -2,7 +2,7 @@ name: Stash FailSafe Override
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.5｜07-07-2026
+  Version: 1.5｜2026-07-07
   Encrypted DNS:
    - DoH / DoT / IPv6 / IPv4
   Policy Groups:
