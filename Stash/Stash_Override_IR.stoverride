@@ -1,0 +1,295 @@
+Name: Stash Iran Core Override
+category: Active
+
+desc: |-
+  [English]
+  DNS | Proxy Groups | Rules
+  Version: 1.0 | 2026-07-08
+  Encrypted DNS: DoH(DoT) | IPv6 | IPv4
+  Policy Groups: IR-Gate {IR-Auto/Global/DE/FI/TR/AE}
+  Rules: Fully Optimized for Iran Users (Anti-Filter & Localization)
+  MATCH -> IR-Gate (Default Fallback)
+
+  [فارسی - توضیح]
+  📌 محیط برنامه: مناسب برای کاربران داخل ایران در برنامه Stash (آیفون/آیپد).
+  ⚙️ پیکربندی اصلی: شامل تنظیمات دی‌ان‌اس رمزگذاری‌شده، گروه‌های پروکسی با تست سرعت خودکار و قوانین تفکیک ترافیک.
+  
+  📦 راهنمای گروه‌های پروکسی:
+   - [گروه اصلی IR-Gate]: شامل گروه‌های IR-Auto، آلمان، فنلاند، ترکیه، امارات و اتصال مستقیم (DIRECT).
+   - [گروه هوشمند IR-Auto]: این گروه به صورت خودکار سرعت بهترین سرورهای نزدیک به ایران (اروپا و خاورمیانه) را بررسی کرده و سریع‌ترین را انتخاب می‌کند.
+     💡 نکته: کافیست در گروه اصلی IR-Gate گزینه IR-Auto را انتخاب کنید و نیازی به انتخاب دستی سرورها نیست.
+   - [اتصال مستقیم DIRECT]: برای وب‌سایت‌های ایرانی، بانک‌ها و خدمات دولتی که آی‌پای خارجی را مسدود می‌کنند، به صورت خودکار فعال است.
+  
+  ⚡ قوانین تفکیک ترافیک:
+   - خدمات ایرانی: تمام سایت‌های ترافیک داخلی ایران (.ir) و برنامه‌های بومی مستقیماً بدون پروکسی باز می‌شوند تا اینترنت نیم‌بها محاسبه شود و خدمات بانکی قطع نشوند.
+   - برنامه‌های بین‌المللی: دسترسی به سرویس‌های هوش مصنوعی (ChatGPT و غیره)، گوگل، یوتیوب، تلگرام، اینستاگرام و واتس‌اپ از طریق پروکسی بهینه‌سازی شده است.
+
+#!override
+
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: ':9090'
+unified-delay: true
+tcp-concurrent: true
+
+dns: #!replace
+  enable: true
+  respect-rules: true
+  ipv6: true
+  prefer-h3: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+
+  # 伊朗本地前置解析 DNS（用于解析本地硬封锁域名与本地服务）
+  default-nameserver:
+    - 1.1.1.1
+    - 9.9.9.9
+    - 178.22.122.100 # 伊朗本地 Shecan DNS（用于绕过部分外部制裁）
+
+  # 远端加密 DNS，彻底粉碎伊朗的国家级 DNS 污染与劫持
+  nameserver:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
+
+  proxy-server-nameserver:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+    - tls://1.1.1.1:853
+    - tls://8.8.8.8:853
+
+  direct-nameserver:
+    - https://1.1.1.1/dns-query
+    - https://9.9.9.9/dns-query
+
+  # 针对伊朗主流本国服务、国民级 App 与网银进行 DNS 本地化直连优化
+  nameserver-policy:
+    '+.ir': [178.22.122.100, 1.1.1.1] # 全面接管所有 .ir 顶级域名
+    '+.snapp.ir': [178.22.122.100]    # 伊朗国民打车软件 Snapp
+    '+.tapsi.ir': [178.22.122.100]    # 出行 Tapsi
+    '+.digikala.com': [1.1.1.1]       # 伊朗最大的电商 Digikala
+    '+.divar.ir': [178.22.122.100]    # 本地闲置交易 Divar
+    '+.bamilo.com': [1.1.1.1]
+    '+.aparat.com': [1.1.1.1]         # 伊朗本土视频网站 Aparat
+    '+.filimo.com': [1.1.1.1]         # 影视 Filimo
+    '+.cafebazaar.ir': [178.22.122.100] # 本地应用商店 Cafe Bazaar
+    '+.myket.ir': [178.22.122.100]     # 应用商店 Myket
+    # 伊朗主流社交与通讯软件（部分处于国家高压管控或内网分流状态）
+    '+.rubika.ir': [178.22.122.100]   # Rubika
+    '+.bale.ai': [1.1.1.1]             # Bale
+    '+.gap.im': [1.1.1.1]              # Gap
+    '+.soroush-app.ir': [178.22.122.100]
+    # 伊朗核心各大银行网关（防审查引起的金融封锁）
+    '+.bmi.ir': [178.22.122.100]      # 迈利银行 Bank Melli
+    '+.banksepah.ir': [178.22.122.100] # 塞帕银行 Bank Sepah
+    '+.bsi.ir': [178.22.122.100]       # 萨德拉特银行 Bank Saderat
+    '+.tejaratbank.ir': [178.22.122.100] # 特扎拉特银行 Bank Tejarat
+    '+.mellatbank.ir': [178.22.122.100]  # 梅拉特银行 Bank Mellat
+    '+.sb24.com': [1.1.1.1]            # 萨曼银行 Saman Bank
+    '+.parsian-bank.ir': [178.22.122.100] # 帕尔斯银行 Parsian Bank
+
+  fallback:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+
+  fallback-filter:
+    geoip: true
+    geoip-code: IR # 针对伊朗本地做地理分流过滤
+    ipcidr:
+      - 240.0.0.0/4
+
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - 'localhost'
+    - '*.msftconnecttest.com'
+    - '*.msftncsi.com'
+    - 'captive.apple.com'
+    - 'stun.*'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+    - 'speedtest.net'
+    - '+.ir'
+
+profile: #!replace
+  store-selected: true
+  store-fake-ip: true
+
+#---------------------------------------------------#
+# 策略组配置 (Proxy Groups - Iran Edition)           #
+#---------------------------------------------------#
+proxy-groups: #!replace
+  # 主控制网关（针对伊朗环境，默认走混合自动测速组）
+  - name: IR-Gate
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png
+    proxies:
+      - 🚀 IR-Auto       # 核心跨国节点自动测速（推荐）
+      - 🌐 Global-Proxy  # 全局手动节点切换
+      - 🇩🇪 DE-Auto       # 德国节点自动测速（主力出海链路）
+      - 🇫🇮 FI-Auto       # 芬兰节点自动测速
+      - 🇹🇷 TR-Auto       # 土耳其节点自动测速（低延迟中东链路）
+      - 🇦🇪 AE-Auto       # 阿联酋节点自动测速
+      - DIRECT            # 直连（仅供伊朗本国服务免流）
+
+  # 混合自动测速组（在伊朗环境高频断网下，自动筛选最稳的欧中东链路。测速缩短至5分钟，提高抗封锁切换效率）
+  - name: 🚀 IR-Auto
+    type: url-test
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Rocket.png
+    filter: '(?i)(\[DE\]|Germany|德国|\[FI\]|Finland|芬兰|\[TR\]|Turkey|土耳其|\[AE\]|UAE|阿联酋)'
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+
+  - name: 🌐 Global-Proxy
+    type: select
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
+
+  - name: 🇩🇪 DE-Auto
+    type: url-test
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
+    filter: '(?i)(\[DE\]|^DE$|Germany|Deutschland|\bDE\b|德国|法兰克福)'
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+
+  - name: 🇫🇮 FI-Auto
+    type: url-test
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Finland.png
+    filter: '(?i)(\[FI\]|^FI$|Finland|Suomi|\bFI\b|芬兰|赫尔辛基)'
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+
+  - name: 🇹🇷 TR-Auto
+    type: url-test
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png
+    filter: '(?i)(\[TR\]|^TR$|Turkey|Türkiye|\bTR\b|土耳其|伊斯坦布尔)'
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+
+  - name: 🇦🇪 AE-Auto
+    type: url-test
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Arab_Emirates.png
+    filter: '(?i)(\[AE\]|^AE$|UAE|Emirates|\bAE\b|阿联酋|迪拜)'
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+
+rules: #!replace
+
+  # GitHub
+  - DOMAIN-SUFFIX,github.com,IR-Gate
+  - DOMAIN-SUFFIX,githubusercontent.com,IR-Gate
+  - DOMAIN-SUFFIX,githubassets.com,IR-Gate
+  - DOMAIN-SUFFIX,raw.githubusercontent.com,IR-Gate
+
+  # Local area network
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - GEOIP,LAN,DIRECT,no-resolve
+
+  # ========= Iran Local Services (DIRECT) =========
+  # 强制让伊朗的所有本地 App、政府及银行网站走直连，防封锁与IP拦截
+  - DOMAIN-SUFFIX,ir,DIRECT
+  - DOMAIN-KEYWORD,snapp,DIRECT
+  - DOMAIN-KEYWORD,tapsi,DIRECT
+  - DOMAIN-KEYWORD,digikala,DIRECT
+  - DOMAIN-KEYWORD,divar,DIRECT
+  - DOMAIN-KEYWORD,bazaar,DIRECT
+  - DOMAIN-KEYWORD,myket,DIRECT
+  - DOMAIN-KEYWORD,rubika,DIRECT
+  - DOMAIN-KEYWORD,bale,DIRECT
+
+  # ========= Custom Rules (Proxy Required) =========
+
+  # Global AI Services (ChatGPT, Claude, Gemini, Copilot)
+  - DOMAIN-KEYWORD,openai,IR-Gate
+  - DOMAIN-KEYWORD,chatgpt,IR-Gate
+  - DOMAIN-SUFFIX,auth0.com,IR-Gate
+  - DOMAIN-SUFFIX,identrust.com,IR-Gate
+  - DOMAIN-SUFFIX,oaistatic.com,IR-Gate
+  - DOMAIN-SUFFIX,oaiusercontent.com,IR-Gate
+  - DOMAIN-SUFFIX,anthropic.com,IR-Gate
+  - DOMAIN-SUFFIX,claude.ai,IR-Gate
+  - DOMAIN-SUFFIX,deepmind.com,IR-Gate
+  - DOMAIN-SUFFIX,gemini.google.com,IR-Gate
+  - DOMAIN-KEYWORD,copilot,IR-Gate
+  - DOMAIN-SUFFIX,designer.microsoft.com,IR-Gate
+  - DOMAIN-SUFFIX,copilot.microsoft.com,IR-Gate
+  - DOMAIN-SUFFIX,ai.microsoft.com,IR-Gate
+
+  # Microsoft OneDrive (Web Version)
+  - DOMAIN,onedrive.live.com,IR-Gate
+  - DOMAIN-SUFFIX,1drv.com,IR-Gate
+
+  # Google & YouTube
+  - DOMAIN-KEYWORD,google,IR-Gate
+  - DOMAIN-SUFFIX,gmail.com,IR-Gate
+  - DOMAIN-SUFFIX,googlevideo.com,IR-Gate
+  - DOMAIN-SUFFIX,youtube.com,IR-Gate
+  - DOMAIN-SUFFIX,ytimg.com,IR-Gate
+  - DOMAIN-SUFFIX,ggpht.com,IR-Gate
+
+  # Telegram
+  - DOMAIN-SUFFIX,telegram.org,IR-Gate
+  - DOMAIN-SUFFIX,telegram.me,IR-Gate
+  - DOMAIN-SUFFIX,t.me,IR-Gate
+  - DOMAIN-SUFFIX,tdesktop.com,IR-Gate
+  - IP-CIDR,91.108.4.0/22,IR-Gate,no-resolve
+  - IP-CIDR,91.108.8.0/22,IR-Gate,no-resolve
+  - IP-CIDR,91.108.12.0/22,IR-Gate,no-resolve
+  - IP-CIDR,91.108.16.0/22,IR-Gate,no-resolve
+  - IP-CIDR,91.108.20.0/22,IR-Gate,no-resolve
+  - IP-CIDR,91.108.56.0/22,IR-Gate,no-resolve
+  - IP-CIDR,149.154.160.0/20,IR-Gate,no-resolve
+  - IP-CIDR6,2001:b28:f23d::/48,IR-Gate,no-resolve
+  - IP-CIDR6,2001:b28:f23f::/48,IR-Gate,no-resolve
+  - IP-CIDR6,2001:67c:4e8::/48,IR-Gate,no-resolve
+
+  # Meta (Instagram & WhatsApp) - 伊朗极度高频使用的被墙社交软件
+  - DOMAIN-KEYWORD,instagram,IR-Gate
+  - DOMAIN-SUFFIX,cdninstagram.com,IR-Gate
+  - DOMAIN-KEYWORD,whatsapp,IR-Gate
+  - DOMAIN-SUFFIX,whatsapp.net,IR-Gate
+
+  # ========= End of custom rules =========
+
+  # Remote rule sets (Global Ad-blocking & Privacy)
+  - RULE-SET,AdvertisingLite,REJECT
+  - RULE-SET,Privacy,REJECT
+
+  # Bottom-up Routing Strategy
+  - GEOIP,LAN,DIRECT
+  - GEOIP,IR,DIRECT,no-resolve # 伊朗 IP 默认直连
+  - MATCH,IR-Gate # 绝大部分未匹配流量默认全部出海
+
+rule-providers: #!replace
+  AdvertisingLite:
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.yaml
+
+  Privacy:
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy_Domain.yaml
+
