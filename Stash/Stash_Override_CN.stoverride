@@ -1,1 +1,291 @@
-Stash_Core_Override.stoverride
+Name: Stash CN Override
+category: Active
+
+desc: |-
+  DNS | Proxy Groups | Rules
+  Version: 1.3 | 2026-07-08
+  Encrypted DNS:
+   - DoH(DoT) | IPv6 | IPv4
+  Policy Groups:
+   - PROXY-Gate {Global-Proxy/US/SG/HK/JP}
+  Rules:
+   - Customized AI, Google, YouTube, Telegram & OneDrive
+   - Sourced from open-source rulesets (blackmatrix7 & ACL4SSR)
+   - MATCH -> PROXY-Gate (Default Fallback)
+
+#!override
+
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: ':9090'
+unified-delay: true
+tcp-concurrent: true
+
+dns: #!replace
+  enable: true
+  respect-rules: true
+  ipv6: true
+  prefer-h3: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 2400:3200::1
+
+  nameserver:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
+
+  proxy-server-nameserver:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+    - tls://1.1.1.1:853
+    - tls://8.8.8.8:853
+    - tls://1.0.0.1:853
+    - tls://8.8.4.4:853
+    - tls://9.9.9.9:853
+
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  nameserver-policy:
+    # 针对中国大陆主流大厂与核心服务的全面 DNS 本地化解析优化
+    '+.tencent.com': [https://dns.alidns.com/dns-query]
+    '+.qq.com': [https://dns.alidns.com/dns-query]
+    '+.weixin.com': [https://dns.alidns.com/dns-query]
+    '+.wechat.com': [https://dns.alidns.com/dns-query]
+    '+.qpic.cn': [https://dns.alidns.com/dns-query]
+    '+.alibaba.com': [https://dns.alidns.com/dns-query]
+    '+.alicdn.com': [https://dns.alidns.com/dns-query]
+    '+.alipay.com': [https://dns.alidns.com/dns-query]
+    '+.taobao.com': [https://dns.alidns.com/dns-query]
+    '+.tmall.com': [https://dns.alidns.com/dns-query]
+    '+.baidu.com': [https://dns.alidns.com/dns-query]
+    '+.bdstatic.com': [https://dns.alidns.com/dns-query]
+    '+.bilibili.com': [https://dns.alidns.com/dns-query]
+    '+.biliapi.net': [https://dns.alidns.com/dns-query]
+    '+.meituan.com': [https://dns.alidns.com/dns-query]
+    '+.meituan.net': [https://dns.alidns.com/dns-query]
+    '+.sankuai.com': [https://dns.alidns.com/dns-query]
+    '+.bytedance.com': [https://dns.alidns.com/dns-query]
+    '+.amemv.com': [https://dns.alidns.com/dns-query]
+    '+.douyin.com': [https://dns.alidns.com/dns-query]
+    '+.pstatp.com': [https://dns.alidns.com/dns-query]
+    '+.kugou.com': [https://dns.alidns.com/dns-query]
+    '+.jd.com': [https://dns.alidns.com/dns-query]
+    '+.360buyimg.com': [https://dns.alidns.com/dns-query]
+    '+.163.com': [https://dns.alidns.com/dns-query]
+    '+.126.net': [https://dns.alidns.com/dns-query]
+
+  fallback:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - 'localhost'
+    - '*.msftconnecttest.com'
+    - '*.msftncsi.com'
+    - '*.msidentity.com'
+    - 'captive.apple.com'
+    - 'stun.*'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+    - '+.weixin.com'
+    - '+.wechat.com'
+    - '+.qq.com'
+    - '+.tencent.com'
+    - 'speedtest.net'
+
+profile: #!replace
+  store-selected: true
+  store-fake-ip: true
+
+proxy-groups: #!replace
+  - name: PROXY-Gate
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png
+    proxies:
+      - 🌐 Global-Proxy
+      - 🇺🇸 US-Auto
+      - 🇸🇬 SG-Auto
+      - 🇭🇰 HK-Auto
+      - 🇯🇵 JP-Auto
+      - DIRECT
+
+  - name: 🌐 Global-Proxy
+    type: select
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
+
+  - name: 🇺🇸 US-Auto
+    type: url-test
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
+    filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+
+  - name: 🇸🇬 SG-Auto
+    type: url-test
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
+    filter: '(?i)(\[SG\]|^SG$|Singapore|\bSG\b|新加坡|狮城)'
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+
+  - name: 🇭🇰 HK-Auto
+    type: url-test
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
+    filter: '(?i)(\[HK\]|^HK$|Hong Kong|\bHK\b|香港|🇨🇳香港)'
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+
+  - name: 🇯🇵 JP-Auto
+    type: url-test
+    include-all: true
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
+    filter: '(?i)(\[JP\]|^JP$|Japan|\bJP\b|日本|东京|大阪|🇯🇵日本)'
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 50
+
+rules: #!replace
+
+  # GitHub
+  - DOMAIN-SUFFIX,github.com,PROXY-Gate
+  - DOMAIN-SUFFIX,githubusercontent.com,PROXY-Gate
+  - DOMAIN-SUFFIX,githubassets.com,PROXY-Gate
+  - DOMAIN-SUFFIX,raw.githubusercontent.com,PROXY-Gate
+
+  # Local area network and e-mail
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - GEOIP,LAN,DIRECT,no-resolve
+  - DST-PORT,465,DIRECT
+  - DST-PORT,587,DIRECT
+  - DST-PORT,993,DIRECT
+  - DST-PORT,995,DIRECT
+
+  # ========= Custom rules =========
+
+  # Global AI Services (ChatGPT, Claude, Gemini, Copilot)
+  - DOMAIN-KEYWORD,openai,PROXY-Gate
+  - DOMAIN-KEYWORD,chatgpt,PROXY-Gate
+  - DOMAIN-SUFFIX,auth0.com,PROXY-Gate
+  - DOMAIN-SUFFIX,identrust.com,PROXY-Gate
+  - DOMAIN-SUFFIX,oaistatic.com,PROXY-Gate
+  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY-Gate
+  - DOMAIN-SUFFIX,anthropic.com,PROXY-Gate
+  - DOMAIN-SUFFIX,claude.ai,PROXY-Gate
+  - DOMAIN-SUFFIX,deepmind.com,PROXY-Gate
+  - DOMAIN-SUFFIX,gemini.google.com,PROXY-Gate
+  - DOMAIN-KEYWORD,copilot,PROXY-Gate
+  - DOMAIN-SUFFIX,designer.microsoft.com,PROXY-Gate
+  - DOMAIN-SUFFIX,copilot.microsoft.com,PROXY-Gate
+  - DOMAIN-SUFFIX,ai.microsoft.com,PROXY-Gate
+
+  # Microsoft OneDrive (Web Version Only)
+  - DOMAIN,onedrive.live.com,PROXY-Gate
+  - DOMAIN-SUFFIX,1drv.com,PROXY-Gate
+
+  # Google & YouTube
+  - DOMAIN-KEYWORD,google,PROXY-Gate
+  - DOMAIN-SUFFIX,gmail.com,PROXY-Gate
+  - DOMAIN-SUFFIX,googlevideo.com,PROXY-Gate
+  - DOMAIN-SUFFIX,youtube.com,PROXY-Gate
+  - DOMAIN-SUFFIX,ytimg.com,PROXY-Gate
+  - DOMAIN-SUFFIX,ggpht.com,PROXY-Gate
+
+  # Telegram
+  - DOMAIN-SUFFIX,telegram.org,PROXY-Gate
+  - DOMAIN-SUFFIX,telegram.me,PROXY-Gate
+  - DOMAIN-SUFFIX,t.me,PROXY-Gate
+  - DOMAIN-SUFFIX,tdesktop.com,PROXY-Gate
+  - IP-CIDR,91.108.4.0/22,PROXY-Gate,no-resolve
+  - IP-CIDR,91.108.8.0/22,PROXY-Gate,no-resolve
+  - IP-CIDR,91.108.12.0/22,PROXY-Gate,no-resolve
+  - IP-CIDR,91.108.16.0/22,PROXY-Gate,no-resolve
+  - IP-CIDR,91.108.20.0/22,PROXY-Gate,no-resolve
+  - IP-CIDR,91.108.56.0/22,PROXY-Gate,no-resolve
+  - IP-CIDR,149.154.160.0/20,PROXY-Gate,no-resolve
+  - IP-CIDR6,2001:b28:f23d::/48,PROXY-Gate,no-resolve
+  - IP-CIDR6,2001:b28:f23f::/48,PROXY-Gate,no-resolve
+  - IP-CIDR6,2001:67c:4e8::/48,PROXY-Gate,no-resolve
+
+  # TikTok & International ByteDance
+  - DOMAIN-KEYWORD,tiktok,PROXY-Gate
+  - DOMAIN-KEYWORD,tiktokcdn,PROXY-Gate
+  - DOMAIN-KEYWORD,tiktokv,PROXY-Gate
+
+  # ========= End of custom rules =========
+
+  # Remote rule sets (Ad-blocking & Privacy)
+  - RULE-SET,AdvertisingLite,REJECT
+  - RULE-SET,Privacy,REJECT
+  - RULE-SET,ACL4SSR_BanAD,REJECT
+  - RULE-SET,ACL4SSR_BanProgramAD,REJECT
+  - RULE-SET,ChinaMax,DIRECT
+
+  # Bottom-up Routing Strategy
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT,no-resolve
+  - MATCH,PROXY-Gate
+
+rule-providers: #!replace
+  AdvertisingLite:
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.yaml
+
+  Privacy:
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy_Domain.yaml
+
+  ACL4SSR_BanAD:
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/mrs/BanAD_domain.mrs
+
+  ACL4SSR_BanProgramAD:
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/mrs/BanProgramAD_domain.mrs
+
+  ChinaMax:
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
+
