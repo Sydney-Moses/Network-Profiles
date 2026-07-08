@@ -6,6 +6,7 @@ Name: Stash Core Override
 category: Active
 
 desc: |-
+  [English]
   DNS | Proxy Groups | Rules
   Version: 1.4 | 2026-07-08
   Encrypted DNS: DoH(DoT) | IPv6 | IPv4
@@ -13,19 +14,19 @@ desc: |-
   Rules: Customized AI, Google, YouTube, Telegram & OneDrive
   MATCH -> PROXY-Gate (Default Fallback)
   [中文说明]
-  [适用于中国大陆地区用户在iPhone/iPad的Stash App上使用]
-  覆写配置（包含 DNS、策略组与规则分流）
-  版本: 1.4 | 2026-07-08
-  加密 DNS: 支持分流、IPv4/IPv6、DoH 与 DoT 混合解析
-  核心策略组: PROXY-Gate大组包括Global/美国/新加坡/香港/日本/台湾/欧洲分组
-  策略组说明: 
-    一般情况下，只需在PROXY-Gate大组里选择某个小组即可，
-    因为美国、新加坡、香港、日本、台湾小组采用自动测速，并且自动选择最快节点。
-    所以当选择某个地区小组后，不需要再选择地区小组里的某个具体节点。
-    欧洲小组不支持自动选择节点，因为大部分网络提供商的欧洲节点比较少，所以需要手动选择。
-  分流规则: 针对全球 AI 软件、谷歌、YouTube、Telegram 及网页版 OneDrive 进行了专项代理优化
-  兜底策略: 未匹配流量默认交由 PROXY-Gate大组里选择的分组处理
+  📌 适用环境: 适用于中国大陆地区用户在 iPhone / iPad 的 Stash App 上使用。
+  ⚙️ 核心配置: 包含加密 DNS 解析、全球多区域策略组及流量分流规则。
   
+  📦 核心策略组说明:
+   - [PROXY-Gate 大组]：包含 Global、美国、新加坡、香港、日本、台湾、欧洲等分组。
+   - [自动测速小组]：美国、新加坡、香港、日本、台湾小组均支持“自动测速并自动选择最优节点”。
+     💡 使用提示：在 PROXY-Gate 大组中勾选对应的地区小组即可，无需再去小组内部手动挑选具体节点。
+   - [欧洲特定小组]：由于多数机场的欧洲节点较少，该组被设计为“自动测速、手动选择”模式，需自行根据延迟高低点击切换。
+  
+  ⚡ 分流与兜底:
+   - 规则分流：针对全球主流 AI 软件、谷歌全家桶、YouTube、Telegram 及网页版 OneDrive 进行了专项代理优化。
+   - 兜底策略：所有未命中规则的剩余流量，默认交由你在 PROXY-Gate 大组中所选的分组或节点来处理。
+
 #!override
 
 mixed-port: 7890
