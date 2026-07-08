@@ -4,7 +4,7 @@ Personal repository for network proxy configuration files and rulesets.
 
 ## 📁 Directory Structure
 
-* **Stash/**: Contains custom override (`.stoverride`) configuration files for the Stash app.
+* **Stash**: Contains custom override (`.stoverride`) configuration files for the Stash app.
   * `Stash_Override_No1.stoverride`: Primary override configuration file, optimized for daily use.
   * `Stash_Override_No2.stoverride`: Secondary override configuration file, designated for poor network conditions.
   * `Stash_Override_Test.stoverride`: Testing configuration file, utilized for ongoing iterations, rule debugging, and network testing.
