@@ -8,7 +8,6 @@ This documentation is available in four languages: English > Chinese > Russian >
 ## English：
 
 Personal repository for network proxy configuration files and rulesets.  
-(Special thanks to Ms. Cecilia for providing the VPS service used for testing.)
 
 ## 📁 Directory Structure
 
@@ -37,7 +36,6 @@ Personal repository for network proxy configuration files and rulesets.
 ## 中文：
 
 个人专用的网络代理配置文件与规则集。  
-（特别感谢 Cecilia 女士提供测试用的 VPS 服务。）
 
 ## 📁 目录结构说明
 
@@ -65,8 +63,7 @@ Personal repository for network proxy configuration files and rulesets.
 
 ## Русский:
 
-Персональный репозиторий для файлов конфигурации сетевого прокси и наборов правил.  
-(Особая благодарность г-же Cecilia за предоставление VPS-сервера для тестирования.)
+Персональный репозиторий для файлов конфигурации сетевого прокси и наборов правил. 
 
 ## 📁 Структура каталогов
 
@@ -95,7 +92,6 @@ Personal repository for network proxy configuration files and rulesets.
 ## فارسی：
 
 مخزن شخصی برای فایل‌های پیکربندی پروکسی شبکه و مجموعه‌قوانین.  
-(با تشکر ویژه از سرکار خانم Cecilia جهت ارائه سرور VPS برای تست.)
 
 ## 📁 ساختار پوشه‌ها
 
