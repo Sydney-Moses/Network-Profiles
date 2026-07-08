@@ -94,7 +94,6 @@ dns: #!replace
       - 240.0.0.0/4
 
   fake-ip-filter:
-  fake-ip-filter:
     - '*.lan'
     - '*.local'
     - 'localhost'
