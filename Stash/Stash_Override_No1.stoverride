@@ -125,6 +125,7 @@ proxy-groups: #!replace
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png
     proxies:
       - 🌎 Custom-Manual
+      - 🗺️ EUR-Manual
       - 🇺🇸 US-Auto
       - 🇸🇬 SG-Auto
       - 🇭🇰 HK-Auto
@@ -135,6 +136,16 @@ proxy-groups: #!replace
     type: select
     include-all: true
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
+
+  - name: 🗺️ EUR-Manual
+    type: select
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    proxies:
+      - 🇬🇧 UK-Auto
+      - 🇩🇪 DE-Auto
+      - 🇫🇷 FR-Auto
+      - 🇷🇺 RU-Auto
+
 
   - name: 🇺🇸 US-Auto
     type: url-test
