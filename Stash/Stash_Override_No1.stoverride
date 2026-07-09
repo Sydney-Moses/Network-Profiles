@@ -124,14 +124,14 @@ proxy-groups: #!replace
     type: select
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png
     proxies:
-      - 🌎 Custom-Gateg
+      - 🌎 Custom-Manual
       - 🇺🇸 US-Auto
       - 🇸🇬 SG-Auto
       - 🇭🇰 HK-Auto
       - 🇯🇵 JP-Auto
       - DIRECT
 
-  - name: 🌎 Custom-Gateg
+  - name: 🌎 Custom-Manual
     type: select
     include-all: true
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
