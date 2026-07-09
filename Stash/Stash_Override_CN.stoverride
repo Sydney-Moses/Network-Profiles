@@ -161,7 +161,7 @@ proxy-groups: #!replace
   # 欧洲组：本组需组手动选择单个国家组，而每个国家组内部自动测速，无需再选择具体节点。
   - name: 🗺️ EUR-Manual
     type: select
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe.png
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     proxies:
       - 🇬🇧 UK-Auto
       - 🇩🇪 DE-Auto
