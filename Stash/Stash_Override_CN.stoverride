@@ -4,7 +4,7 @@ category: Active
 
 desc: |-
   DNS | Proxy Groups | Rules
-  Version: 1.56｜2026-07-08
+  Version: 1.6｜2026-07-08
   Encrypted DNS: DoH(DoT) | IPv6 | IPv4
   Policy Groups: PROXY-Gate {Global/US/SG/HK/JP/TW/EU}
   Rules: Customized AI, Google, YouTube, Telegram & OneDrive
