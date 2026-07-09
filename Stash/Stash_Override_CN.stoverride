@@ -144,12 +144,12 @@ proxy-groups: #!replace
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png
     proxies:
       - 🌐 Global-Proxy  # 默认全局代理（包含所有节点）
-      - 🇪🇺 EU-Manual     # 欧洲区域手动切换（英/德/法/俄）
       - 🇺🇸 US-Auto       # 美国节点自动测速
       - 🇸🇬 SG-Auto       # 新加坡节点自动测速
       - 🇭🇰 HK-Auto       # 香港节点自动测速
       - 🇯🇵 JP-Auto       # 日本节点自动测速
       - 🇹🇼 TW-Auto       # 台湾节点自动测速
+      - 🇪🇺 EU-Manual     # 欧洲区域手动切换（英/德/法/俄）
       - DIRECT            # 直连
 
   - name: 🌐 Global-Proxy
