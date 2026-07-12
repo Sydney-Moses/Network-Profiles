@@ -3,7 +3,7 @@ category: Active
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.3｜2026-07-11
+  Version: 1.4｜2026-07-11
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -70,28 +70,28 @@ dns: #!replace
     'dns.alidns.com': [223.5.5.5, 223.6.6.6]
     'doh.pub': [1.12.12.12, 120.53.53.53]
     #WeChat
-    '+.weixin.com': ['https://dns.alidns.com/dns-query']
-    '+.wechat.com': ['https://dns.alidns.com/dns-query']
-    '+.qq.com': ['https://dns.alidns.com/dns-query']
-    '+.tencent.com': ['https://dns.alidns.com/dns-query']
-    '+.qpic.cn': ['https://dns.alidns.com/dns-query']
-    '+.wx.qq.com': ['https://dns.alidns.com/dns-query']
-    '+.wxapp.qq.com': ['https://dns.alidns.com/dns-query']
+    '+.weixin.com': [https://dns.alidns.com/dns-query]
+    '+.wechat.com': [https://dns.alidns.com/dns-query]
+    '+.qq.com': [https://dns.alidns.com/dns-query]
+    '+.tencent.com': [https://dns.alidns.com/dns-query]
+    '+.qpic.cn': [https://dns.alidns.com/dns-query]
+    '+.wx.qq.com': [https://dns.alidns.com/dns-query]
+    '+.wxapp.qq.com': [https://dns.alidns.com/dns-query]
     #MeiTuan
-    '+.meituan.com': ['https://dns.alidns.com/dns-query']
-    '+.meituan.net': ['https://dns.alidns.com/dns-query']
-    '+.sankuai.com': ['https://dns.alidns.com/dns-query']
-    '+.meituanwaimai.com': ['https://dns.alidns.com/dns-query']
-    '+.meituanzhongbao.com': ['https://dns.alidns.com/dns-query']
+    '+.meituan.com': [https://dns.alidns.com/dns-query]
+    '+.meituan.net': [https://dns.alidns.com/dns-query]
+    '+.sankuai.com': [https://dns.alidns.com/dns-query]
+    '+.meituanwaimai.com': [https://dns.alidns.com/dns-query]
+    '+.meituanzhongbao.com': [https://dns.alidns.com/dns-query]
     #KuGou
-    '+.kugou.com': ['https://dns.alidns.com/dns-query']
-    '+.kugou.net': ['https://dns.alidns.com/dns-query']
-    '+.kgimg.com': ['https://dns.alidns.com/dns-query']
-    '+.kglink.cn': ['https://dns.alidns.com/dns-query']
-    '+.kugouaudio.com': ['https://dns.alidns.com/dns-query']
-    '+.kugoustore.com': ['https://dns.alidns.com/dns-query']
-    '+.kugouvoice.com': ['https://dns.alidns.com/dns-query']
-    '+.kugouyouth.com': ['https://dns.alidns.com/dns-query']
+    '+.kugou.com': [https://dns.alidns.com/dns-query]
+    '+.kugou.net': [https://dns.alidns.com/dns-query]
+    '+.kgimg.com': [https://dns.alidns.com/dns-query]
+    '+.kglink.cn': [https://dns.alidns.com/dns-query]
+    '+.kugouaudio.com': [https://dns.alidns.com/dns-query]
+    '+.kugoustore.com': [https://dns.alidns.com/dns-query]
+    '+.kugouvoice.com': [https://dns.alidns.com/dns-query]
+    '+.kugouyouth.com': [https://dns.alidns.com/dns-query]
 
   fallback:
     - https://dns.cloudflare.com/dns-query
