@@ -34,16 +34,15 @@ dns: #!replace
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-    ⁠- system
 
   nameserver:
     - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
     - https://1.1.1.1/dns-query
     - https://1.0.0.1/dns-query
-    - https://dns.google/dns-query
     - https://8.8.8.8/dns-query
     - https://8.8.4.4/dns-query
-    - https://dns.quad9.net/dns-query
     - https://9.9.9.9/dns-query
     - https://149.112.112.112/dns-query
 
@@ -69,7 +68,6 @@ dns: #!replace
     'dns.quad9.net': [9.9.9.9, 149.112.112.112]
     'dns.alidns.com': [223.5.5.5, 223.6.6.6]
     'doh.pub': [1.12.12.12, 120.53.53.53]
-
     #WeChat
     '+.weixin.com': [https://dns.alidns.com/dns-query]
     '+.wechat.com': [https://dns.alidns.com/dns-query]
