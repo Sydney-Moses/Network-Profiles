@@ -61,16 +61,6 @@ dns: #!replace
     - https://doh.pub/dns-query
 
   nameserver-policy:
-    '+.ctcxianyu.com': ['https://38.76.213.238:8080/dns-query']
-    '+.525536.xyz': ['https://38.76.213.238:8080/dns-query']
-    'hk01a.t11-a.app': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
-    'hk02a.t11-a.app': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
-    'hk03a.t11-a.app': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
-    'hk04a.t11-a.app': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
-    'sg01a.t202511-n.icu': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
-    'sg02a.t202511-n.icu': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
-    'sg03a.t202511-n.icu': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
-    'sg04a.t202511-n.icu': ['https://dns.alidns.com/dns-query', 'https://doh.pub/dns-query']
     'dns.cloudflare.com': ['1.1.1.1', '1.0.0.1']
     'dns.google': ['8.8.8.8', '8.8.4.4']
     'dns.quad9.net': ['9.9.9.9', '149.112.112.112']
