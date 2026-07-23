@@ -77,8 +77,6 @@ dns: #!replace
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
-      - 127.0.0.0/8
-      - 0.0.0.0/32
 
   fake-ip-filter:
     - '*.lan'
