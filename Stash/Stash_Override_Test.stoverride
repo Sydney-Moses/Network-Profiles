@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.6｜2026-07-17
+  Version: 2.7｜2026-07-17
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -24,6 +24,14 @@ unified-delay: true
 tcp-concurrent: true
 
 #===C30===#
+tun: #!replace
+  enable: true
+  stack: gvisor
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+
 dns: #!replace
   enable: true
   respect-rules: true
