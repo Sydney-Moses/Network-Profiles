@@ -265,11 +265,7 @@ rules: #!replace
   - DST-PORT,587,DIRECT
   - DST-PORT,993,DIRECT
   - DST-PORT,995,DIRECT
-  #Remote rule set
-  - RULE-SET,AdvertisingLite,REJECT
-  - RULE-SET,Privacy,REJECT
-  - RULE-SET,ACL4SSR_BanAD,REJECT
-  - RULE-SET,ACL4SSR_BanProgramAD,REJECT
+
 
   #=========Custom rules=========#
 
@@ -435,6 +431,11 @@ rules: #!replace
   - DOMAIN-SUFFIX,umeng.com,DIRECT
   #=========End of custom rules=========#
 
+  #Remote rule set
+  - RULE-SET,AdvertisingLite,REJECT
+  - RULE-SET,Privacy,REJECT
+  - RULE-SET,ACL4SSR_BanAD,REJECT
+  - RULE-SET,ACL4SSR_BanProgramAD,REJECT
   #Bottom-up strategy
   - RULE-SET,ChinaMax,DIRECT
   - GEOIP,LAN,DIRECT
