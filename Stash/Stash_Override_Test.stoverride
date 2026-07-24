@@ -29,8 +29,6 @@ tun: #!replace
   stack: gvisor
   auto-route: true
   auto-detect-interface: true
-  dns-hijack:
-    - any:53
 
 dns: #!replace
   enable: true
