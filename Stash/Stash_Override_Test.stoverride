@@ -25,7 +25,7 @@ tcp-concurrent: true
 
 #===C30===#
 tun: #!replace
-  enable: true
+  enable: false
   stack: gvisor
   auto-route: true
   auto-detect-interface: true
