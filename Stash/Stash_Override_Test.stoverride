@@ -26,7 +26,7 @@ tcp-concurrent: true
 #===C30===#
 tun: #!replace
   enable: true
-  stack: system
+  stack: gvisor
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
@@ -37,7 +37,7 @@ dns: #!replace
   respect-rules: true
   ipv6: true
   prefer-h3: true
-  enhanced-mode: fake-ip
+  enhanced-mode: redir-host
   fake-ip-range: 198.18.0.1/16
 
   default-nameserver:
