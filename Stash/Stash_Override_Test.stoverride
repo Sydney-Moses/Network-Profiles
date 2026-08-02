@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.7｜2026-07-17
+  Version: 2.3｜2026-07-17
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -24,6 +24,13 @@ unified-delay: true
 tcp-concurrent: true
 
 #===C30===#
+tun: #!replace
+  enable: true
+  stack: gvisor
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
 
 dns: #!replace
   enable: true
@@ -41,46 +48,94 @@ dns: #!replace
   nameserver:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
-    - https://dns.quad9.net/dns-query
 
-#===The following commands may be invalid===#
+# === The following fields may not be supported === #
   proxy-server-nameserver:
     - tls://1.1.1.1:853
     - tls://8.8.8.8:853
-    - tls://9.9.9.9:853
 
   direct-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-
-  direct-nameserver-follow-policy: true
+# === The above rules may not take effect === #
 
   nameserver-policy:
-    '+.ctcxianyu.com': ['https://38.76.213.238:8080/dns-query']
-    '+.525536.xyz': ['https://38.76.213.238:8080/dns-query']
+    'dns.cloudflare.com':
+      - 1.1.1.1
+      - 1.0.0.1
+    'dns.google':
+      - 8.8.8.8
+      - 8.8.4.4
+    'dns.quad9.net':
+      - 9.9.9.9
+      - 149.112.112.112
+    'dns.alidns.com':
+      - 223.5.5.5
+      - 223.6.6.6
+    'doh.pub':
+      - 1.12.12.12
+      - 120.53.53.53
+    # Proxy Node Domain DNS Policy
+    '+.ctcxianyu.com':
+      - https://38.76.213.238:8080/dns-query
+    '+.525536.xyz':
+      - https://38.76.213.238:8080/dns-query
     '+.t11-a.app':
-      - tls://1.1.1.1:853
-      - tls://8.8.8.8:853
-      - tls://9.9.9.9:853
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
     '+.t202511-n.icu':
-      - tls://1.1.1.1:853
-      - tls://8.8.8.8:853
-      - tls://9.9.9.9:853
-    '+.163.com': ['https://dns.alidns.com/dns-query']
-    '+.126.com': ['https://dns.alidns.com/dns-query']
-    '+.126.net': ['https://dns.alidns.com/dns-query']
-    '+.netease.com': ['https://dns.alidns.com/dns-query']
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    # UnionPay
+    '+.unionpay.com':
+      - https://dns.alidns.com/dns-query
+    '+.95516.com':
+      - https://dns.alidns.com/dns-query
+    # NetEase
+    '+.163.com':
+      - https://dns.alidns.com/dns-query
+    '+.126.com':
+      - https://dns.alidns.com/dns-query
+    '+.126.net':
+      - https://dns.alidns.com/dns-query
+    '+.netease.com':
+      - https://dns.alidns.com/dns-query
+    # Tencent
+    '+.weixin.com':
+      - https://dns.alidns.com/dns-query
+    '+.wechat.com':
+      - https://dns.alidns.com/dns-query
+    '+.qq.com':
+      - https://dns.alidns.com/dns-query
+    '+.qpic.cn':
+      - https://dns.alidns.com/dns-query
+    '+.tencent.com':
+      - https://dns.alidns.com/dns-query
+    # Meituan
+    '+.meituan.com':
+      - https://dns.alidns.com/dns-query
+    '+.meituan.net':
+      - https://dns.alidns.com/dns-query
+    '+.sankuai.com':
+      - https://dns.alidns.com/dns-query
+    # Kugou
+    '+.kugou.com':
+      - https://dns.alidns.com/dns-query
+    '+.kgimg.com':
+      - https://dns.alidns.com/dns-query
 
   fallback:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
     - https://dns.quad9.net/dns-query
+    - https://dns.adguard-dns.com/dns-query
+    - https://dns.nextdns.io
 
   fallback-filter:
     geoip: true
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
+      - 127.0.0.0/8
+      - 0.0.0.0/32
 
   fake-ip-filter:
     - '*.lan'
@@ -90,6 +145,8 @@ dns: #!replace
     - '*.msftncsi.com'
     - '*.msidentity.com'
     - 'captive.apple.com'
+    - '*.push.apple.com'
+    - '*.push.apple.com.akadns.net'
     - 'stun.*'
     - '+.stun.*.*'
     - '+.stun.*.*.*'
@@ -266,7 +323,11 @@ rules: #!replace
   - DST-PORT,587,DIRECT
   - DST-PORT,993,DIRECT
   - DST-PORT,995,DIRECT
-
+  #Remote rule set
+  - RULE-SET,AdvertisingLite,REJECT
+  - RULE-SET,Privacy,REJECT
+  - RULE-SET,ACL4SSR_BanAD,REJECT
+  - RULE-SET,ACL4SSR_BanProgramAD,REJECT
 
   #=========Custom rules=========#
 
@@ -289,7 +350,7 @@ rules: #!replace
   - DOMAIN-SUFFIX,updates.cdn-apple.com,PROXY-Gate
   # (Push service)
   - DOMAIN-SUFFIX,push.apple.com,PROXY-Gate
-  - DOMAIN-SUFFIX,push-apple.com.akadns.net,PROXY-Gate
+  - DOMAIN-SUFFIX,push.apple.com.akadns.net,PROXY-Gate
   - DOMAIN-KEYWORD,apple.com.edgekey.net,PROXY-Gate
   - IP-CIDR,17.249.0.0/16,PROXY-Gate,no-resolve
   - IP-CIDR,17.252.0.0/16,PROXY-Gate,no-resolve
@@ -301,7 +362,6 @@ rules: #!replace
   - IP-CIDR6,2403:300:a51::/48,PROXY-Gate,no-resolve
   - IP-CIDR6,2a01:b740:a42::/48,PROXY-Gate,no-resolve
   # (App Store / iTunes)
-  - DOMAIN,itunes.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,apps.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,itunes.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,appstore.com,PROXY-Gate
@@ -432,14 +492,8 @@ rules: #!replace
   - DOMAIN-SUFFIX,umeng.com,DIRECT
   #=========End of custom rules=========#
 
-  #Remote rule set
-  - RULE-SET,AdvertisingLite,REJECT
-  - RULE-SET,Privacy,REJECT
-  - RULE-SET,ACL4SSR_BanAD,REJECT
-  - RULE-SET,ACL4SSR_BanProgramAD,REJECT
   #Bottom-up strategy
   - RULE-SET,ChinaMax,DIRECT
-  - GEOIP,LAN,DIRECT
   - GEOIP,CN,DIRECT,no-resolve
   - MATCH,PROXY-Gate
 
