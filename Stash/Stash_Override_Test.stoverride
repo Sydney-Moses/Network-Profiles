@@ -342,6 +342,9 @@ rules: #!replace
   - DOMAIN,fpinit.itunes.apple.com,DIRECT
   - DOMAIN,mvod.itunes.apple.com,DIRECT
   - DOMAIN,itsliveradio.apple.com,DIRECT
+  # Apple additional services - test
+  - DOMAIN,ocsp2.apple.com,DIRECT
+  - DOMAIN,guzzoni.smoot.apple.com,DIRECT
   # (Push service)
   - DOMAIN-SUFFIX,push.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,push-apple.com.akadns.net,PROXY-Gate
