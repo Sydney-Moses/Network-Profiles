@@ -333,12 +333,15 @@ rules: #!replace
 
   # Apple
   # Apple Music - TEST
-  - DOMAIN,aod.itunes.apple.com,DIRECT
-  - DOMAIN-SUFFIX,music.apple.com,PROXY-Gate
-  - DOMAIN-SUFFIX,itunes.apple.com,PROXY-Gate
-  - DOMAIN-SUFFIX,mzstatic.com,PROXY-Gate
-  - DOMAIN-SUFFIX,aaplimg.com,PROXY-Gate
-  - DOMAIN,aod.itunes.apple.com,DIRECT
+  - DOMAIN-SUFFIX,music.apple.com,DIRECT
+  - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
+  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
+  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
+  - DOMAIN,sb.music.apple.com,DIRECT
+  - DOMAIN,amp-api-edge.music.apple.com,DIRECT
+  - DOMAIN,fpinit.itunes.apple.com,DIRECT
+  - DOMAIN,mvod.itunes.apple.com,DIRECT
+  - DOMAIN,itsliveradio.apple.com,DIRECT
   # (Push service)
   - DOMAIN-SUFFIX,push.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,push-apple.com.akadns.net,PROXY-Gate
