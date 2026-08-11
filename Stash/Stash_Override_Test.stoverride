@@ -332,6 +332,11 @@ rules: #!replace
   #=========Custom rules=========#
 
   # Apple
+  # Apple Music test
+  - DOMAIN,sb.music.apple.com,DIRECT
+  - DOMAIN,fpinit.itunes.apple.com,DIRECT
+  - DOMAIN,mvod.itunes.apple.com,DIRECT
+  - DOMAIN,is1-ssl.mzstatic.com,DIRECT
   # (Push service)
   - DOMAIN-SUFFIX,push.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,push-apple.com.akadns.net,PROXY-Gate
