@@ -332,25 +332,6 @@ rules: #!replace
   #=========Custom rules=========#
 
   # Apple
-  # (Basic connection and time)
-  - DOMAIN,time.apple.com,DIRECT
-  - DOMAIN,captive.apple.com,DIRECT
-  # (Media and content)
-  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
-  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
-  - DOMAIN-SUFFIX,music.apple.com,DIRECT
-  - DOMAIN-SUFFIX,api.music.apple.com,DIRECT
-  - DOMAIN-SUFFIX,amp-api.music.apple.com,DIRECT
-  - DOMAIN-SUFFIX,play.itunes.apple.com,DIRECT
-  # (Storage and backup)
-  - DOMAIN-SUFFIX,icloud.com.cn,DIRECT
-  - DOMAIN-SUFFIX,icloud.com,DIRECT
-  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
-  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
-  - DOMAIN,gateway.icloud.com,DIRECT
-  # (Download and update)
-  - DOMAIN-SUFFIX,swcdn.apple.com,DIRECT
-  - DOMAIN-SUFFIX,updates.cdn-apple.com,DIRECT
   # (Push service)
   - DOMAIN-SUFFIX,push.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,push-apple.com.akadns.net,PROXY-Gate
@@ -366,13 +347,6 @@ rules: #!replace
   - IP-CIDR6,2403:300:a42::/48,PROXY-Gate,no-resolve
   - IP-CIDR6,2403:300:a51::/48,PROXY-Gate,no-resolve
   - IP-CIDR6,2a01:b740:a42::/48,PROXY-Gate,no-resolve
-  # (App Store / iTunes)
-  - DOMAIN-SUFFIX,apps.apple.com,DIRECT
-  - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
-  - DOMAIN-SUFFIX,appstore.com,DIRECT
-  - DOMAIN-KEYWORD,buy.itunes,DIRECT
-  - DOMAIN,bag.itunes.apple.com,DIRECT
-  - DOMAIN,storekit.itunes.apple.com,DIRECT
   # Microsoft
   - DOMAIN-KEYWORD,copilot,PROXY-Gate
   - DOMAIN-SUFFIX,bing.com,PROXY-Gate
