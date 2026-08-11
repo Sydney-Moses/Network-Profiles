@@ -2,7 +2,7 @@ name: Stash Beta Override
 category: Beta
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.9
+  Version: 1.0
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -333,6 +333,7 @@ rules: #!replace
 
   # Apple
   # Apple Music - TEST
+  - DOMAIN,aod.itunes.apple.com,DIRECT
   - DOMAIN-SUFFIX,music.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,itunes.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,mzstatic.com,PROXY-Gate
