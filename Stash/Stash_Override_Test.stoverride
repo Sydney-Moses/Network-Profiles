@@ -354,7 +354,6 @@ rules: #!replace
   # (Push service)
   - DOMAIN-SUFFIX,push.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,push-apple.com.akadns.net,PROXY-Gate
-  - DOMAIN-SUFFIX,akadns.net,PROXY-Gate
   - DOMAIN-KEYWORD,apple.com.edgekey.net,PROXY-Gate
   - DOMAIN-KEYWORD,push.apple,PROXY-Gate
   - DOMAIN,feedback.push-apple.com.akadns.net,PROXY-Gate
