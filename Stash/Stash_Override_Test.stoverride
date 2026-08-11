@@ -1,9 +1,8 @@
 name: Stash Beta Override
 category: Beta
-
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.3｜2026-07-17
+  Version: 2.8｜2026-07-17
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -34,6 +33,7 @@ tun: #!replace
 
 dns: #!replace
   enable: true
+  stun-response-ip: 1.1.1.1
   respect-rules: true
   ipv6: true
   prefer-h3: true
@@ -49,7 +49,7 @@ dns: #!replace
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
 
-# === The following fields may not be supported === #
+# The following fields may not be supported #
   proxy-server-nameserver:
     - tls://1.1.1.1:853
     - tls://8.8.8.8:853
@@ -57,7 +57,7 @@ dns: #!replace
   direct-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-# === The above rules may not take effect === #
+# The above rules may not take effect #
 
   nameserver-policy:
     'dns.cloudflare.com':
@@ -75,7 +75,7 @@ dns: #!replace
     'doh.pub':
       - 1.12.12.12
       - 120.53.53.53
-    # Proxy Node Domain DNS Policy
+    # Proxy Node Domain DNS Policy #
     'geosite:cn':
       - https://dns.alidns.com/dns-query
     '+.ctcxianyu.com':
@@ -129,7 +129,6 @@ dns: #!replace
   fallback:
     - https://dns.quad9.net/dns-query
     - https://dns.adguard-dns.com/dns-query
-    - https://dns.nextdns.io
 
   fallback-filter:
     geoip: true
@@ -148,7 +147,6 @@ dns: #!replace
     - '*.msidentity.com'
     - 'captive.apple.com'
     - '*.push.apple.com'
-    - '*.push.apple.com.akadns.net'
     - 'stun.*'
     - '+.stun.*.*'
     - '+.stun.*.*.*'
@@ -338,9 +336,12 @@ rules: #!replace
   - DOMAIN,time.apple.com,DIRECT
   - DOMAIN,captive.apple.com,DIRECT
   # (Media and content)
-  - DOMAIN-SUFFIX,mzstatic.com,PROXY-Gate
-  - DOMAIN-SUFFIX,aaplimg.com,PROXY-Gate
+  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
+  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
   - DOMAIN-SUFFIX,music.apple.com,DIRECT
+  - DOMAIN-SUFFIX,api.music.apple.com,DIRECT
+  - DOMAIN-SUFFIX,amp-api.music.apple.com,DIRECT
+  - DOMAIN-SUFFIX,play.itunes.apple.com,DIRECT
   # (Storage and backup)
   - DOMAIN-SUFFIX,icloud.com.cn,DIRECT
   - DOMAIN-SUFFIX,icloud.com,DIRECT
@@ -352,8 +353,10 @@ rules: #!replace
   - DOMAIN-SUFFIX,updates.cdn-apple.com,PROXY-Gate
   # (Push service)
   - DOMAIN-SUFFIX,push.apple.com,PROXY-Gate
-  - DOMAIN-SUFFIX,push.apple.com.akadns.net,PROXY-Gate
+  - DOMAIN-SUFFIX,push-apple.com.akadns.net,PROXY-Gate
   - DOMAIN-KEYWORD,apple.com.edgekey.net,PROXY-Gate
+  - DOMAIN-KEYWORD,push.apple,PROXY-Gate
+  - DOMAIN,feedback.push-apple.com.akadns.net,PROXY-Gate
   - IP-CIDR,17.249.0.0/16,PROXY-Gate,no-resolve
   - IP-CIDR,17.252.0.0/16,PROXY-Gate,no-resolve
   - IP-CIDR,17.57.144.0/22,PROXY-Gate,no-resolve
