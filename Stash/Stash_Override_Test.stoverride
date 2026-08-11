@@ -34,7 +34,6 @@ tun: #!replace
 
 dns: #!replace
   enable: true
-  stun-response-ip: 1.1.1.1
   respect-rules: true
   ipv6: true
   prefer-h3: true
