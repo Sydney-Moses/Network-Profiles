@@ -2,7 +2,7 @@ name: Stash Beta Override
 category: Beta
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.0
+  Version: 1.1
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
