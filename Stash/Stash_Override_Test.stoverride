@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.0｜2026-07-17
+  Version: 1.0｜2026-07-17
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -351,6 +351,7 @@ rules: #!replace
   - DOMAIN-SUFFIX,api.music.apple.com,DIRECT
   - DOMAIN-SUFFIX,amp-api.music.apple.com,DIRECT
   - DOMAIN-SUFFIX,play.itunes.apple.com,DIRECT
+  - DOMAIN,aod.itunes.apple.com,DIRECT
   # (Storage and backup)
   - DOMAIN-SUFFIX,icloud.com.cn,DIRECT
   - DOMAIN-SUFFIX,icloud.com,DIRECT
