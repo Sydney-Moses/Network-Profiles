@@ -1,8 +1,9 @@
 name: Stash Beta Override
 category: Beta
+
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.1
+  Version: 2.8｜2026-07-17
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -332,22 +333,29 @@ rules: #!replace
   #=========Custom rules=========#
 
   # Apple
-  # Apple Music - TEST
+  # (Basic connection and time)
+  - DOMAIN,time.apple.com,DIRECT
+  - DOMAIN,captive.apple.com,DIRECT
+  # (Media and content)
+  - DOMAIN-SUFFIX,mzstatic.com,PROXY-Gate
+  - DOMAIN-SUFFIX,aaplimg.com,PROXY-Gate
   - DOMAIN-SUFFIX,music.apple.com,DIRECT
-  - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
-  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
-  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
-  - DOMAIN,sb.music.apple.com,DIRECT
-  - DOMAIN,amp-api-edge.music.apple.com,DIRECT
-  - DOMAIN,fpinit.itunes.apple.com,DIRECT
-  - DOMAIN,mvod.itunes.apple.com,DIRECT
-  - DOMAIN,itsliveradio.apple.com,DIRECT
-  # Apple additional services - test
-  - DOMAIN,ocsp2.apple.com,DIRECT
-  - DOMAIN,guzzoni.smoot.apple.com,DIRECT
+  - DOMAIN-SUFFIX,api.music.apple.com,DIRECT
+  - DOMAIN-SUFFIX,amp-api.music.apple.com,DIRECT
+  - DOMAIN-SUFFIX,play.itunes.apple.com,DIRECT
+  # (Storage and backup)
+  - DOMAIN-SUFFIX,icloud.com.cn,DIRECT
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
+  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+  - DOMAIN,gateway.icloud.com,DIRECT
+  # (Download and update)
+  - DOMAIN-SUFFIX,swcdn.apple.com,PROXY-Gate
+  - DOMAIN-SUFFIX,updates.cdn-apple.com,PROXY-Gate
   # (Push service)
   - DOMAIN-SUFFIX,push.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,push-apple.com.akadns.net,PROXY-Gate
+  - DOMAIN-SUFFIX,akadns.net,PROXY-Gate
   - DOMAIN-KEYWORD,apple.com.edgekey.net,PROXY-Gate
   - DOMAIN-KEYWORD,push.apple,PROXY-Gate
   - DOMAIN,feedback.push-apple.com.akadns.net,PROXY-Gate
@@ -360,6 +368,13 @@ rules: #!replace
   - IP-CIDR6,2403:300:a42::/48,PROXY-Gate,no-resolve
   - IP-CIDR6,2403:300:a51::/48,PROXY-Gate,no-resolve
   - IP-CIDR6,2a01:b740:a42::/48,PROXY-Gate,no-resolve
+  # (App Store / iTunes)
+  - DOMAIN-SUFFIX,apps.apple.com,PROXY-Gate
+  - DOMAIN-SUFFIX,itunes.apple.com,PROXY-Gate
+  - DOMAIN-SUFFIX,appstore.com,PROXY-Gate
+  - DOMAIN-KEYWORD,buy.itunes,PROXY-Gate
+  - DOMAIN,bag.itunes.apple.com,PROXY-Gate
+  - DOMAIN,storekit.itunes.apple.com,PROXY-Gate
   # Microsoft
   - DOMAIN-KEYWORD,copilot,PROXY-Gate
   - DOMAIN-SUFFIX,bing.com,PROXY-Gate
@@ -519,4 +534,5 @@ rule-providers: #!replace
     format: yaml
     interval: 86400
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
+
 
