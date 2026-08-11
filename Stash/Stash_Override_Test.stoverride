@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.1｜2026-07-17
+  Version: 2.0｜2026-07-17
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -46,7 +46,6 @@ dns: #!replace
     - 2400:3200::1
 
   nameserver:
-    - https://dns.alidns.com/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
 
@@ -89,6 +88,15 @@ dns: #!replace
     '+.t202511-n.icu':
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
+
+    '+.apple.com':
+      - https://dns.alidns.com/dns-query
+    '+.mzstatic.com':
+      - https://dns.alidns.com/dns-query
+    '+.itunes.apple.com':
+      - https://dns.alidns.com/dns-query
+    '+.aaplimg.com':
+      - https://dns.alidns.com/dns-query
     # UnionPay
     '+.unionpay.com':
       - https://dns.alidns.com/dns-query
