@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.2｜2026-07-17
+  Version: 2.1｜2026-07-17
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -46,6 +46,7 @@ dns: #!replace
     - 2400:3200::1
 
   nameserver:
+    - https://dns.alidns.com/dns-query
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
 
