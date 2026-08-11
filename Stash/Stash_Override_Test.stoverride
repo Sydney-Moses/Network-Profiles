@@ -368,7 +368,7 @@ rules: #!replace
   - IP-CIDR6,2a01:b740:a42::/48,PROXY-Gate,no-resolve
   # (App Store / iTunes)
   - DOMAIN-SUFFIX,apps.apple.com,PROXY-Gate
-  - DOMAIN-SUFFIX,itunes.apple.com,PROXY-Gate
+ # - DOMAIN-SUFFIX,itunes.apple.com,PROXY-Gate
   - DOMAIN-SUFFIX,appstore.com,PROXY-Gate
   - DOMAIN-KEYWORD,buy.itunes,PROXY-Gate
   - DOMAIN,bag.itunes.apple.com,PROXY-Gate
