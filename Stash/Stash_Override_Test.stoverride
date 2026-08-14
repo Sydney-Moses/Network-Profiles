@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 0.7
+  Version: 0.8
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -178,7 +178,8 @@ proxy-groups: #!replace
     type: select
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png
     proxies:
-      - 🌎 Custom-Manual
+      - 🔘 Primary-Manual
+      - 🔘 Backup-Manual
       - 🗺️ EUR-Manual
       - 🇺🇸 US-Fallback
       - 🇸🇬 SG-Fallback
@@ -189,13 +190,6 @@ proxy-groups: #!replace
       - DIRECT
 
   # Custom
-  - name: 🌎 Custom-Manual
-    type: select
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
-    proxies:
-      - 🔘 Primary-Manual
-      - 🔘 Backup-Manual
-
   - name: 🔘 Primary-Manual
     type: select
     use:
