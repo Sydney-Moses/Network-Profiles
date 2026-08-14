@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 0.6
+  Version: 0.7
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -193,16 +193,16 @@ proxy-groups: #!replace
     type: select
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
     proxies:
-      - 1️⃣ Primary-Manual
-      - 2️⃣ Backup-Manual
+      - 🔘 Primary-Manual
+      - 🔘 Backup-Manual
 
-  - name: 1️⃣ Primary-Manual
+  - name: 🔘 Primary-Manual
     type: select
     use:
       - Primary-VPS
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
 
-  - name: 2️⃣ Backup-Manual
+  - name: 🔘 Backup-Manual
     type: select
     use:
       - Backup-VPS
