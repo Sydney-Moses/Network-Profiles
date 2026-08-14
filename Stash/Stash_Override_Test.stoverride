@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 0.2
+  Version: 0.3
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -219,12 +219,12 @@ proxy-groups: #!replace
       - 🇮🇹 IT-Fallback
       - 🇳🇱 NL-Fallback
 
-  # === Fallback ===
+  # Fallback
   - name: 🇺🇸 US-Fallback
     type: fallback
     proxies:
-      - 🇺🇸 Primary-US
-      - 🇺🇸 Backup-US
+      - 🇺🇸 Primary-US-Auto
+      - 🇺🇸 Backup-US-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
     url: http://www.gstatic.com/generate_204
     interval: 600
@@ -233,8 +233,8 @@ proxy-groups: #!replace
   - name: 🇸🇬 SG-Fallback
     type: fallback
     proxies:
-      - 🇸🇬 Primary-SG
-      - 🇸🇬 Backup-SG
+      - 🇸🇬 Primary-SG-Auto
+      - 🇸🇬 Backup-SG-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -243,8 +243,8 @@ proxy-groups: #!replace
   - name: 🇭🇰 HK-Fallback
     type: fallback
     proxies:
-      - 🇭🇰 Primary-HK
-      - 🇭🇰 Backup-HK
+      - 🇭🇰 Primary-HK-Auto
+      - 🇭🇰 Backup-HK-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -253,8 +253,8 @@ proxy-groups: #!replace
   - name: 🇯🇵 JP-Fallback
     type: fallback
     proxies:
-      - 🇯🇵 Primary-JP
-      - 🇯🇵 Backup-JP
+      - 🇯🇵 Primary-JP-Auto
+      - 🇯🇵 Backup-JP-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -263,8 +263,8 @@ proxy-groups: #!replace
   - name: 🇰🇷 KR-Fallback
     type: fallback
     proxies:
-      - 🇰🇷 Primary-KR
-      - 🇰🇷 Backup-KR
+      - 🇰🇷 Primary-KR-Auto
+      - 🇰🇷 Backup-KR-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -273,8 +273,8 @@ proxy-groups: #!replace
   - name: 🇨🇦 CA-Fallback
     type: fallback
     proxies:
-      - 🇨🇦 Primary-CA
-      - 🇨🇦 Backup-CA
+      - 🇨🇦 Primary-CA-Auto
+      - 🇨🇦 Backup-CA-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Canada.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -283,8 +283,8 @@ proxy-groups: #!replace
   - name: 🇬🇧 UK-Fallback
     type: fallback
     proxies:
-      - 🇬🇧 Primary-UK
-      - 🇬🇧 Backup-UK
+      - 🇬🇧 Primary-UK-Auto
+      - 🇬🇧 Backup-UK-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -293,8 +293,8 @@ proxy-groups: #!replace
   - name: 🇩🇪 DE-Fallback
     type: fallback
     proxies:
-      - 🇩🇪 Primary-DE
-      - 🇩🇪 Backup-DE
+      - 🇩🇪 Primary-DE-Auto
+      - 🇩🇪 Backup-DE-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -303,8 +303,8 @@ proxy-groups: #!replace
   - name: 🇫🇷 FR-Fallback
     type: fallback
     proxies:
-      - 🇫🇷 Primary-FR
-      - 🇫🇷 Backup-FR
+      - 🇫🇷 Primary-FR-Auto
+      - 🇫🇷 Backup-FR-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -313,8 +313,8 @@ proxy-groups: #!replace
   - name: 🇮🇹 IT-Fallback
     type: fallback
     proxies:
-      - 🇮🇹 Primary-IT
-      - 🇮🇹 Backup-IT
+      - 🇮🇹 Primary-IT-Auto
+      - 🇮🇹 Backup-IT-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -323,14 +323,14 @@ proxy-groups: #!replace
   - name: 🇳🇱 NL-Fallback
     type: fallback
     proxies:
-      - 🇳🇱 Primary-NL
-      - 🇳🇱 Backup-NL
+      - 🇳🇱 Primary-NL-Auto
+      - 🇳🇱 Backup-NL-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
 
-  # === Provider - Auto ===
+  # Provider
   - name: 🇺🇸 Primary-US-Auto
     type: url-test
     use:
