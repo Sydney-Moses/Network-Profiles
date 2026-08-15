@@ -529,7 +529,7 @@ proxy-groups: #!replace
       # - Primary-VPS
     # filter: '(?i)(\[IT\]|^IT$|Italy|Italian|\bIT\b|意大利|米兰|罗马|Milan|Rome)'
     # icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
-    # url: https://www.google.com/
+    # url: http://www.gstatic.com/generate_204
     # interval: 900
     # timeout: 15
     # tolerance: 50
@@ -540,7 +540,7 @@ proxy-groups: #!replace
       - Backup-VPS
     filter: '(?i)(\[IT\]|^IT$|Italy|Italian|\bIT\b|意大利|米兰|罗马|Milan|Rome)'
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
-    url: https://www.google.com/
+    url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
     tolerance: 50
