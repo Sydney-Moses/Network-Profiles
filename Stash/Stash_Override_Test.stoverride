@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 0.9
+  Version: 1.0
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -529,7 +529,7 @@ proxy-groups: #!replace
       - Primary-VPS
     filter: '(?i)(\[IT\]|^IT$|Italy|Italian|\bIT\b|意大利|米兰|罗马|Milan|Rome)'
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
-    url: http://www.gstatic.com/generate_204
+    url: https://www.google.com/
     interval: 900
     timeout: 15
     tolerance: 50
@@ -540,7 +540,7 @@ proxy-groups: #!replace
       - Backup-VPS
     filter: '(?i)(\[IT\]|^IT$|Italy|Italian|\bIT\b|意大利|米兰|罗马|Milan|Rome)'
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
-    url: http://www.gstatic.com/generate_204
+    url: https://www.google.com/
     interval: 900
     timeout: 15
     tolerance: 50
