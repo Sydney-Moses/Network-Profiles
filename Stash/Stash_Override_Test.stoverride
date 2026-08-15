@@ -187,6 +187,7 @@ proxy-groups: #!replace
       - 🇯🇵 JP-Fallback
       - 🇰🇷 KR-Fallback
       - 🇨🇦 CA-Fallback
+      - DIRECT
 
   # Custom
   - name: 🔘 Primary-Manual
