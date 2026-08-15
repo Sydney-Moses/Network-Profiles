@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.1
+  Version: 1.2
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -217,8 +217,8 @@ proxy-groups: #!replace
   - name: 🇺🇸 US-Fallback
     type: fallback
     proxies:
-      - 🇺🇸 Primary-US-Auto
-      - 🇺🇸 Backup-US-Auto
+      - ⚙️ 🇺🇸 Primary-US-Auto
+      - ⚙️ 🇺🇸 Backup-US-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
     url: http://www.gstatic.com/generate_204
     interval: 600
@@ -227,8 +227,8 @@ proxy-groups: #!replace
   - name: 🇸🇬 SG-Fallback
     type: fallback
     proxies:
-      - 🇸🇬 Primary-SG-Auto
-      - 🇸🇬 Backup-SG-Auto
+      - ⚙️ 🇸🇬 Primary-SG-Auto
+      - ⚙️ 🇸🇬 Backup-SG-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -237,8 +237,8 @@ proxy-groups: #!replace
   - name: 🇭🇰 HK-Fallback
     type: fallback
     proxies:
-      - 🇭🇰 Primary-HK-Auto
-      - 🇭🇰 Backup-HK-Auto
+      - ⚙️ 🇭🇰 Primary-HK-Auto
+      - ⚙️ 🇭🇰 Backup-HK-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -247,8 +247,8 @@ proxy-groups: #!replace
   - name: 🇯🇵 JP-Fallback
     type: fallback
     proxies:
-      - 🇯🇵 Primary-JP-Auto
-      - 🇯🇵 Backup-JP-Auto
+      - ⚙️ 🇯🇵 Primary-JP-Auto
+      - ⚙️ 🇯🇵 Backup-JP-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -257,8 +257,8 @@ proxy-groups: #!replace
   - name: 🇰🇷 KR-Fallback
     type: fallback
     proxies:
-      - 🇰🇷 Primary-KR-Auto
-      # - 🇰🇷 Backup-KR-Auto
+      - ⚙️ 🇰🇷 Primary-KR-Auto
+      # - ⚙️ 🇰🇷 Backup-KR-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -267,8 +267,8 @@ proxy-groups: #!replace
   - name: 🇨🇦 CA-Fallback
     type: fallback
     proxies:
-      - 🇨🇦 Primary-CA-Auto
-      - 🇨🇦 Backup-CA-Auto
+      - ⚙️ 🇨🇦 Primary-CA-Auto
+      - ⚙️ 🇨🇦 Backup-CA-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Canada.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -277,8 +277,8 @@ proxy-groups: #!replace
   - name: 🇬🇧 UK-Fallback
     type: fallback
     proxies:
-      - 🇬🇧 Primary-UK-Auto
-      - 🇬🇧 Backup-UK-Auto
+      - ⚙️ 🇬🇧 Primary-UK-Auto
+      - ⚙️ 🇬🇧 Backup-UK-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -287,8 +287,8 @@ proxy-groups: #!replace
   - name: 🇩🇪 DE-Fallback
     type: fallback
     proxies:
-      - 🇩🇪 Primary-DE-Auto
-      - 🇩🇪 Backup-DE-Auto
+      - ⚙️ 🇩🇪 Primary-DE-Auto
+      - ⚙️ 🇩🇪 Backup-DE-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -297,8 +297,8 @@ proxy-groups: #!replace
   - name: 🇫🇷 FR-Fallback
     type: fallback
     proxies:
-      - 🇫🇷 Primary-FR-Auto
-      - 🇫🇷 Backup-FR-Auto
+      - ⚙️ 🇫🇷 Primary-FR-Auto
+      - ⚙️ 🇫🇷 Backup-FR-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -307,8 +307,8 @@ proxy-groups: #!replace
   - name: 🇮🇹 IT-Fallback
     type: fallback
     proxies:
-      # - 🇮🇹 Primary-IT-Auto
-      - 🇮🇹 Backup-IT-Auto
+      # - ⚙️ 🇮🇹 Primary-IT-Auto
+      - ⚙️ 🇮🇹 Backup-IT-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -317,15 +317,15 @@ proxy-groups: #!replace
   - name: 🇳🇱 NL-Fallback
     type: fallback
     proxies:
-      - 🇳🇱 Primary-NL-Auto
-      - 🇳🇱 Backup-NL-Auto
+      - ⚙️ 🇳🇱 Primary-NL-Auto
+      - ⚙️ 🇳🇱 Backup-NL-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
 
   # Provider
-  - name: 🇺🇸 Primary-US-Auto
+  - name: ⚙️ 🇺🇸 Primary-US-Auto
     type: url-test
     use:
       - Primary-VPS
@@ -336,7 +336,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇺🇸 Backup-US-Auto
+  - name: ⚙️ 🇺🇸 Backup-US-Auto
     type: url-test
     use:
       - Backup-VPS
@@ -347,7 +347,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇸🇬 Primary-SG-Auto
+  - name: ⚙️ 🇸🇬 Primary-SG-Auto
     type: url-test
     use:
       - Primary-VPS
@@ -358,7 +358,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇸🇬 Backup-SG-Auto
+  - name: ⚙️ 🇸🇬 Backup-SG-Auto
     type: url-test
     use:
       - Backup-VPS
@@ -369,7 +369,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇭🇰 Primary-HK-Auto
+  - name: ⚙️ 🇭🇰 Primary-HK-Auto
     type: url-test
     use:
       - Primary-VPS
@@ -380,7 +380,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇭🇰 Backup-HK-Auto
+  - name: ⚙️ 🇭🇰 Backup-HK-Auto
     type: url-test
     use:
       - Backup-VPS
@@ -391,7 +391,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇯🇵 Primary-JP-Auto
+  - name: ⚙️ 🇯🇵 Primary-JP-Auto
     type: url-test
     use:
       - Primary-VPS
@@ -402,7 +402,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇯🇵 Backup-JP-Auto
+  - name: ⚙️ 🇯🇵 Backup-JP-Auto
     type: url-test
     use:
       - Backup-VPS
@@ -413,7 +413,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇰🇷 Primary-KR-Auto
+  - name: ⚙️ 🇰🇷 Primary-KR-Auto
     type: url-test
     use:
       - Primary-VPS
@@ -424,7 +424,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  # - name: 🇰🇷 Backup-KR-Auto
+  # - name: ⚙️ 🇰🇷 Backup-KR-Auto
     # type: url-test
     # use:
       # - Backup-VPS
@@ -435,7 +435,7 @@ proxy-groups: #!replace
     # timeout: 15
     # tolerance: 50
 
-  - name: 🇨🇦 Primary-CA-Auto
+  - name: ⚙️ 🇨🇦 Primary-CA-Auto
     type: url-test
     use:
       - Primary-VPS
@@ -446,7 +446,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇨🇦 Backup-CA-Auto
+  - name: ⚙️ 🇨🇦 Backup-CA-Auto
     type: url-test
     use:
       - Backup-VPS
@@ -457,7 +457,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇬🇧 Primary-UK-Auto
+  - name: ⚙️ 🇬🇧 Primary-UK-Auto
     type: url-test
     use:
       - Primary-VPS
@@ -468,7 +468,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇬🇧 Backup-UK-Auto
+  - name: ⚙️ 🇬🇧 Backup-UK-Auto
     type: url-test
     use:
       - Backup-VPS
@@ -479,7 +479,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇩🇪 Primary-DE-Auto
+  - name: ⚙️ 🇩🇪 Primary-DE-Auto
     type: url-test
     use:
       - Primary-VPS
@@ -490,7 +490,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇩🇪 Backup-DE-Auto
+  - name: ⚙️ 🇩🇪 Backup-DE-Auto
     type: url-test
     use:
       - Backup-VPS
@@ -501,7 +501,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇫🇷 Primary-FR-Auto
+  - name: ⚙️ 🇫🇷 Primary-FR-Auto
     type: url-test
     use:
       - Primary-VPS
@@ -512,7 +512,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇫🇷 Backup-FR-Auto
+  - name: ⚙️ 🇫🇷 Backup-FR-Auto
     type: url-test
     use:
       - Backup-VPS
@@ -523,7 +523,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  # - name: 🇮🇹 Primary-IT-Auto
+  # - name: ⚙️ 🇮🇹 Primary-IT-Auto
     # type: url-test
     # use:
       # - Primary-VPS
@@ -534,7 +534,7 @@ proxy-groups: #!replace
     # timeout: 15
     # tolerance: 50
 
-  - name: 🇮🇹 Backup-IT-Auto
+  - name: ⚙️ 🇮🇹 Backup-IT-Auto
     type: url-test
     use:
       - Backup-VPS
@@ -545,7 +545,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇳🇱 Primary-NL-Auto
+  - name: ⚙️ 🇳🇱 Primary-NL-Auto
     type: url-test
     use:
       - Primary-VPS
@@ -556,7 +556,7 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇳🇱 Backup-NL-Auto
+  - name: ⚙️ 🇳🇱 Backup-NL-Auto
     type: url-test
     use:
       - Backup-VPS
