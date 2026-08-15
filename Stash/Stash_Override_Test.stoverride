@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 0.8
+  Version: 0.9
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -187,7 +187,6 @@ proxy-groups: #!replace
       - 🇯🇵 JP-Fallback
       - 🇰🇷 KR-Fallback
       - 🇨🇦 CA-Fallback
-      - DIRECT
 
   # Custom
   - name: 🔘 Primary-Manual
