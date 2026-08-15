@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.0
+  Version: 1.1
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -258,7 +258,7 @@ proxy-groups: #!replace
     type: fallback
     proxies:
       - 🇰🇷 Primary-KR-Auto
-      - 🇰🇷 Backup-KR-Auto
+      # - 🇰🇷 Backup-KR-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png
     url: http://www.gstatic.com/generate_204
     interval: 900
@@ -307,7 +307,7 @@ proxy-groups: #!replace
   - name: 🇮🇹 IT-Fallback
     type: fallback
     proxies:
-      - 🇮🇹 Primary-IT-Auto
+      # - 🇮🇹 Primary-IT-Auto
       - 🇮🇹 Backup-IT-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
     url: http://www.gstatic.com/generate_204
@@ -424,16 +424,16 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇰🇷 Backup-KR-Auto
-    type: url-test
-    use:
-      - Backup-VPS
-    filter: '(?i)(\[KR\]|^KR$|Korea|South Korea|\bKR\b|韩国|首尔|Seoul)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png
-    url: http://www.gstatic.com/generate_204
-    interval: 900
-    timeout: 15
-    tolerance: 50
+  # - name: 🇰🇷 Backup-KR-Auto
+    # type: url-test
+    # use:
+      # - Backup-VPS
+    # filter: '(?i)(\[KR\]|^KR$|Korea|South Korea|\bKR\b|韩国|首尔|Seoul)'
+    # icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png
+    # url: http://www.gstatic.com/generate_204
+    # interval: 900
+    # timeout: 15
+    # tolerance: 50
 
   - name: 🇨🇦 Primary-CA-Auto
     type: url-test
@@ -523,16 +523,16 @@ proxy-groups: #!replace
     timeout: 15
     tolerance: 50
 
-  - name: 🇮🇹 Primary-IT-Auto
-    type: url-test
-    use:
-      - Primary-VPS
-    filter: '(?i)(\[IT\]|^IT$|Italy|Italian|\bIT\b|意大利|米兰|罗马|Milan|Rome)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
-    url: https://www.google.com/
-    interval: 900
-    timeout: 15
-    tolerance: 50
+  # - name: 🇮🇹 Primary-IT-Auto
+    # type: url-test
+    # use:
+      # - Primary-VPS
+    # filter: '(?i)(\[IT\]|^IT$|Italy|Italian|\bIT\b|意大利|米兰|罗马|Milan|Rome)'
+    # icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    # url: https://www.google.com/
+    # interval: 900
+    # timeout: 15
+    # tolerance: 50
 
   - name: 🇮🇹 Backup-IT-Auto
     type: url-test
