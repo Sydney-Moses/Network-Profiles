@@ -1,13 +1,15 @@
 name: Stash Beta Override
 category: Beta
+icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png
+
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.2
+  Version: 1.7
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
-   - PROXY-Gate｛Custom/US/SG/HK/KR/JP/CA/EUR(UK-DE-FR-IT-NL)}
+   - PROXY-Gate:Primary/Backup/US/SG/HK/KR/JP/CA/Other｛UK-DE-FR-IT-NL-DK-PE-RO｝
   Rules:
    - Customize｜CN
    - MATCH -> PROXY-Gate (Default Fallback)
@@ -176,11 +178,11 @@ profile: #!replace
 proxy-groups: #!replace
   - name: PROXY-Gate
     type: select
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Final.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
     proxies:
       - 🔘 Primary-Manual
       - 🔘 Backup-Manual
-      - 🗺️ EUR-Manual
+      - 🌍 Other-Manual
       - 🇺🇸 US-Fallback
       - 🇸🇬 SG-Fallback
       - 🇭🇰 HK-Fallback
@@ -189,29 +191,37 @@ proxy-groups: #!replace
       - 🇨🇦 CA-Fallback
       - DIRECT
 
-  # Custom
-  - name: 🔘 Primary-Manual
+  # Other-Manual
+  - name: 🌍 Other-Manual
     type: select
-    use:
-      - Primary-VPS
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
-
-  - name: 🔘 Backup-Manual
-    type: select
-    use:
-      - Backup-VPS
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
-
-  # EUR-Manual
-  - name: 🗺️ EUR-Manual
-    type: select
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
     proxies:
       - 🇬🇧 UK-Fallback
       - 🇩🇪 DE-Fallback
       - 🇫🇷 FR-Fallback
       - 🇮🇹 IT-Fallback
       - 🇳🇱 NL-Fallback
+      - 🇩🇰 DK-Fallback
+      - 🇵🇪 PE-Fallback
+      - 🇷🇴 RO-Fallback
+
+  # Custom
+  - name: 🔘 Primary-Manual
+    type: select
+    interval: 900
+    use:
+      - Primary-VPS
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
+    url: http://www.gstatic.com/generate_204
+
+  - name: 🔘 Backup-Manual
+    type: select
+    interval: 900
+    use:
+      - Backup-VPS
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
+    url: http://www.gstatic.com/generate_204
+
 
   # Fallback
   - name: 🇺🇸 US-Fallback
@@ -279,7 +289,7 @@ proxy-groups: #!replace
     proxies:
       - ⚙️ 🇬🇧 Primary-UK-Auto
       - ⚙️ 🇬🇧 Backup-UK-Auto
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -289,7 +299,7 @@ proxy-groups: #!replace
     proxies:
       - ⚙️ 🇩🇪 Primary-DE-Auto
       - ⚙️ 🇩🇪 Backup-DE-Auto
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -299,7 +309,7 @@ proxy-groups: #!replace
     proxies:
       - ⚙️ 🇫🇷 Primary-FR-Auto
       - ⚙️ 🇫🇷 Backup-FR-Auto
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -309,7 +319,7 @@ proxy-groups: #!replace
     proxies:
       # - ⚙️ 🇮🇹 Primary-IT-Auto
       - ⚙️ 🇮🇹 Backup-IT-Auto
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -319,18 +329,50 @@ proxy-groups: #!replace
     proxies:
       - ⚙️ 🇳🇱 Primary-NL-Auto
       - ⚙️ 🇳🇱 Backup-NL-Auto
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
 
-  # Provider
+  - name: 🇩🇰 DK-Fallback
+    type: fallback
+    proxies:
+      # - ⚙️ 🇩🇰 Primary-DK-Auto
+      - ⚙️ 🇩🇰 Backup-DK-Auto
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    timeout: 15
+
+  - name: 🇵🇪 PE-Fallback
+    type: fallback
+    proxies:
+      # - ⚙️ 🇵🇪 Primary-PE-Auto
+      - ⚙️ 🇵🇪 Backup-PE-Auto
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    timeout: 15
+
+  - name: 🇷🇴 RO-Fallback
+    type: fallback
+    proxies:
+      # - ⚙️ 🇷🇴 Primary-RO-Auto
+      - ⚙️ 🇷🇴 Backup-RO-Auto
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    timeout: 15
+
+  # ======== AUTO ======== #
+  # =========================== #
+
   - name: ⚙️ 🇺🇸 Primary-US-Auto
     type: url-test
     use:
       - Primary-VPS
     filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 600
     timeout: 15
@@ -341,7 +383,7 @@ proxy-groups: #!replace
     use:
       - Backup-VPS
     filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 600
     timeout: 15
@@ -352,7 +394,7 @@ proxy-groups: #!replace
     use:
       - Primary-VPS
     filter: '(?i)(\[SG\]|^SG$|Singapore|\bSG\b|新加坡|狮城)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -363,7 +405,7 @@ proxy-groups: #!replace
     use:
       - Backup-VPS
     filter: '(?i)(\[SG\]|^SG$|Singapore|\bSG\b|新加坡|狮城)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -374,7 +416,7 @@ proxy-groups: #!replace
     use:
       - Primary-VPS
     filter: '(?i)(\[HK\]|^HK$|Hong Kong|\bHK\b|香港|🇨🇳香港)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -385,7 +427,7 @@ proxy-groups: #!replace
     use:
       - Backup-VPS
     filter: '(?i)(\[HK\]|^HK$|Hong Kong|\bHK\b|香港|🇨🇳香港)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -396,7 +438,7 @@ proxy-groups: #!replace
     use:
       - Primary-VPS
     filter: '(?i)(\[JP\]|^JP$|Japan|\bJP\b|日本|东京|大阪|🇯🇵日本)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -407,7 +449,7 @@ proxy-groups: #!replace
     use:
       - Backup-VPS
     filter: '(?i)(\[JP\]|^JP$|Japan|\bJP\b|日本|东京|大阪|🇯🇵日本)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -418,7 +460,7 @@ proxy-groups: #!replace
     use:
       - Primary-VPS
     filter: '(?i)(\[KR\]|^KR$|Korea|South Korea|\bKR\b|韩国|首尔|Seoul)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -429,7 +471,7 @@ proxy-groups: #!replace
     # use:
       # - Backup-VPS
     # filter: '(?i)(\[KR\]|^KR$|Korea|South Korea|\bKR\b|韩国|首尔|Seoul)'
-    # icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png
+    # icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     # url: http://www.gstatic.com/generate_204
     # interval: 900
     # timeout: 15
@@ -440,7 +482,7 @@ proxy-groups: #!replace
     use:
       - Primary-VPS
     filter: '(?i)(\[CA\]|^CA$|Canada|加拿大|Toronto|Vancouver|Montreal)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Canada.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -451,7 +493,7 @@ proxy-groups: #!replace
     use:
       - Backup-VPS
     filter: '(?i)(\[CA\]|^CA$|Canada|加拿大|Toronto|Vancouver|Montreal)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Canada.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -462,7 +504,7 @@ proxy-groups: #!replace
     use:
       - Primary-VPS
     filter: '(?i)(?!.*Ukraine)(\[UK\]|^UK$|United Kingdom|Britain|\bUK\b|英国|伦敦)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -473,7 +515,7 @@ proxy-groups: #!replace
     use:
       - Backup-VPS
     filter: '(?i)(?!.*Ukraine)(\[UK\]|^UK$|United Kingdom|Britain|\bUK\b|英国|伦敦)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -484,7 +526,7 @@ proxy-groups: #!replace
     use:
       - Primary-VPS
     filter: '(?i)(\[DE\]|^DE$|Germany|Deutschland|\bDE\b|德国|法兰克福)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -495,7 +537,7 @@ proxy-groups: #!replace
     use:
       - Backup-VPS
     filter: '(?i)(\[DE\]|^DE$|Germany|Deutschland|\bDE\b|德国|法兰克福)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -506,7 +548,7 @@ proxy-groups: #!replace
     use:
       - Primary-VPS
     filter: '(?i)(\[FR\]|^FR$|France|\bFR\b|法国|巴黎)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -517,7 +559,7 @@ proxy-groups: #!replace
     use:
       - Backup-VPS
     filter: '(?i)(\[FR\]|^FR$|France|\bFR\b|法国|巴黎)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -528,7 +570,7 @@ proxy-groups: #!replace
     # use:
       # - Primary-VPS
     # filter: '(?i)(\[IT\]|^IT$|Italy|Italian|\bIT\b|意大利|米兰|罗马|Milan|Rome)'
-    # icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    # icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     # url: http://www.gstatic.com/generate_204
     # interval: 900
     # timeout: 15
@@ -539,7 +581,7 @@ proxy-groups: #!replace
     use:
       - Backup-VPS
     filter: '(?i)(\[IT\]|^IT$|Italy|Italian|\bIT\b|意大利|米兰|罗马|Milan|Rome)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -550,7 +592,7 @@ proxy-groups: #!replace
     use:
       - Primary-VPS
     filter: '(?i)(\[NL\]|^NL$|Netherlands|Holland|\bNL\b|荷兰|阿姆斯特丹|Amsterdam)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
@@ -561,7 +603,73 @@ proxy-groups: #!replace
     use:
       - Backup-VPS
     filter: '(?i)(\[NL\]|^NL$|Netherlands|Holland|\bNL\b|荷兰|阿姆斯特丹|Amsterdam)'
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Europe_Map.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    timeout: 15
+    tolerance: 50
+
+  # - name: ⚙️ 🇩🇰 Primary-DK-Auto
+    # type: url-test
+    # use:
+      # - Primary-VPS
+    # filter: '(?i)(\[DK\]|^DK$|Denmark|\bDK\b|丹麦|Copenhagen|哥本哈根)'
+    # icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    # url: http://www.gstatic.com/generate_204
+    # interval: 900
+    # timeout: 15
+    # tolerance: 50
+
+  - name: ⚙️ 🇩🇰 Backup-DK-Auto
+    type: url-test
+    use:
+      - Backup-VPS
+    filter: '(?i)(\[DK\]|^DK$|Denmark|\bDK\b|丹麦|Copenhagen|哥本哈根)'
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    timeout: 15
+    tolerance: 50
+
+  # - name: ⚙️ 🇵🇪 Primary-PE-Auto
+    # type: url-test
+    # use:
+      # - Primary-VPS
+    # filter: '(?i)(\[PE\]|^PE$|Peru|\bPE\b|秘鲁|Lima|利马)'
+    # icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    # url: http://www.gstatic.com/generate_204
+    # interval: 900
+    # timeout: 15
+    # tolerance: 50
+
+  - name: ⚙️ 🇵🇪 Backup-PE-Auto
+    type: url-test
+    use:
+      - Backup-VPS
+    filter: '(?i)(\[PE\]|^PE$|Peru|\bPE\b|秘鲁|Lima|利马)'
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    url: http://www.gstatic.com/generate_204
+    interval: 900
+    timeout: 15
+    tolerance: 50
+
+  # - name: ⚙️ 🇷🇴 Primary-RO-Auto
+    # type: url-test
+    # use:
+      # - Primary-VPS
+    # filter: '(?i)(\[RO\]|^RO$|Romania|\bRO\b|罗马尼亚|Bucharest|布加勒斯特)'
+    # icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    # url: http://www.gstatic.com/generate_204
+    # interval: 900
+    # timeout: 15
+    # tolerance: 50
+
+  - name: ⚙️ 🇷🇴 Backup-RO-Auto
+    type: url-test
+    use:
+      - Backup-VPS
+    filter: '(?i)(\[RO\]|^RO$|Romania|\bRO\b|罗马尼亚|Bucharest|布加勒斯特)'
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
     interval: 900
     timeout: 15
