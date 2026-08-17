@@ -5,23 +5,15 @@ icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.7
+  Version: 2.1｜2026-8-16
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
-   - PROXY-Gate:Primary/Backup/US/SG/HK/KR/JP/CA/Other｛UK-DE-FR-IT-NL-DK-PE-RO｝
+   - PROXY-Gate:Primary/Backup/Clean/US/SG/HK/KR/JP/CA/Other｛UK-DE-FR-IT-NL-DK-PE-RO｝
   Rules:
    - Customize｜CN
    - MATCH -> PROXY-Gate (Default Fallback)
 
-
-proxy-providers:
-
-  Backup-VPS:
-
-    url: https://translink.nmsl.sb/vcme1092c/acfeff0ff3f43806ca810f5cc3ec21de
-
-    interval: 600
 #!override
 
 mixed-port: 7890
@@ -189,6 +181,7 @@ proxy-groups: #!replace
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
     proxies:
       - 🔘 Primary-Manual
+      - 🔘 Clean-Manual
       - 🔘 Backup-Manual
       - 🌍 Other-Manual
       - 🇺🇸 US-Fallback
@@ -198,6 +191,25 @@ proxy-groups: #!replace
       - 🇰🇷 KR-Fallback
       - 🇨🇦 CA-Fallback
       - DIRECT
+
+  # Custom
+  - name: 🔘 Primary-Manual
+    type: select
+    use:
+      - Primary-VPS
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
+
+  - name: 🔘 Clean-Manual
+    type: select
+    use:
+      - Clean-VPS
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
+
+  - name: 🔘 Backup-Manual
+    type: select
+    use:
+      - Backup-VPS
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
 
   # Other-Manual
   - name: 🌍 Other-Manual
@@ -213,29 +225,12 @@ proxy-groups: #!replace
       - 🇵🇪 PE-Fallback
       - 🇷🇴 RO-Fallback
 
-  # Custom
-  - name: 🔘 Primary-Manual
-    type: select
-    interval: 900
-    use:
-      - Primary-VPS
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
-    url: http://www.gstatic.com/generate_204
-
-  - name: 🔘 Backup-Manual
-    type: select
-    interval: 900
-    use:
-      - Backup-VPS
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Server.png
-    url: http://www.gstatic.com/generate_204
-
-
   # Fallback
   - name: 🇺🇸 US-Fallback
     type: fallback
     proxies:
       - ⚙️ 🇺🇸 Primary-US-Auto
+      - ⚙️ 🇺🇸 Clean-US-Auto
       - ⚙️ 🇺🇸 Backup-US-Auto
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
     url: http://www.gstatic.com/generate_204
@@ -379,6 +374,17 @@ proxy-groups: #!replace
     type: url-test
     use:
       - Primary-VPS
+    filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    timeout: 15
+    tolerance: 50
+
+  - name: ⚙️ 🇺🇸 Clean-US-Auto
+    type: url-test
+    use:
+      - Clean-VPS
     filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     url: http://www.gstatic.com/generate_204
@@ -701,7 +707,8 @@ rules: #!replace
   - DST-PORT,993,DIRECT
   - DST-PORT,995,DIRECT
   #Remote rule set
-  - RULE-SET,AdvertisingLite,REJECT
+  #- RULE-SET,AdvertisingLite,REJECT
+  - RULE-SET,AdvertisingLite_Domain,REJECT
   - RULE-SET,Privacy,REJECT
   - RULE-SET,ACL4SSR_BanAD,REJECT
   - RULE-SET,ACL4SSR_BanProgramAD,REJECT
@@ -882,7 +889,14 @@ rules: #!replace
   - MATCH,PROXY-Gate
 
 rule-providers: #!replace
-  AdvertisingLite:
+
+  #AdvertisingLite:
+    #behavior: classical
+    #format: yaml
+    #interval: 86400
+    #url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml
+
+  AdvertisingLite_Domain:
     behavior: domain
     format: yaml
     interval: 86400
@@ -911,4 +925,5 @@ rule-providers: #!replace
     format: yaml
     interval: 86400
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
+
 
