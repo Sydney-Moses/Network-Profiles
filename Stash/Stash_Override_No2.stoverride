@@ -3,7 +3,7 @@ category: Active
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.8｜2026-07-11
+  Version: 1.9｜2026-07-11
   Encrypted DNS:
    - DoT｜IPv6｜IPv4
   Policy Groups:
@@ -22,6 +22,14 @@ log-level: info
 external-controller: ':9090'
 unified-delay: true
 tcp-concurrent: true
+
+tun: #!replace
+  enable: true
+  stack: gvisor
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
 
 dns: #!replace
   enable: true
