@@ -48,15 +48,6 @@ dns: #!replace
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
 
-# The following fields may not be supported #
-  proxy-server-nameserver:
-    - tls://1.1.1.1:853
-    - tls://8.8.8.8:853
-
-  direct-nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
-# The above rules may not take effect #
 
   nameserver-policy:
     'dns.cloudflare.com':
@@ -75,8 +66,9 @@ dns: #!replace
       - 1.12.12.12
       - 120.53.53.53
     # Proxy Node Domain DNS Policy #
-    'geosite:cn':
-      - https://dns.alidns.com/dns-query
+
+    '+.googlevideo.com':
+      - https://dns.google/dns-query
     '+.ctcxianyu.com':
       - https://38.76.213.238:8080/dns-query
     '+.525536.xyz':
