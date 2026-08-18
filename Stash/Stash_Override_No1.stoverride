@@ -887,10 +887,10 @@ rules: #!replace
 rule-providers: #!replace
 
   AdvertisingLite:
-    #behavior: domain
-    #format: yaml
-    #interval: 86400
-    #url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml
+    behavior: domain
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml
 
   AdvertisingLite_Domain:
     behavior: domain
