@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.4
+  Version: 2.5
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -680,6 +680,7 @@ proxy-groups: #!replace
 rules: #!replace
 
   #GitHub
+  - DOMAIN-SUFFIX,duolingo.cn,PROXY-Gate
   - DOMAIN-SUFFIX,github.com,PROXY-Gate
   - DOMAIN-SUFFIX,githubusercontent.com,PROXY-Gate
   - DOMAIN-SUFFIX,githubassets.com,PROXY-Gate
