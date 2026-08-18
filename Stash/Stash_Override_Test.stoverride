@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.6
+  Version: 2.7
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -44,9 +44,8 @@ dns: #!replace
     - 119.29.29.29
     - 2400:3200::1
 
-  nameserver:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
+
+
 
 
   nameserver-policy:
@@ -123,9 +122,6 @@ dns: #!replace
     '+.kgimg.com':
       - https://dns.alidns.com/dns-query
 
-  fallback:
-    - https://dns.quad9.net/dns-query
-    - https://dns.adguard-dns.com/dns-query
 
   fallback-filter:
     geoip: true
