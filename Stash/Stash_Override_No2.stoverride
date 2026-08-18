@@ -3,7 +3,7 @@ category: Active
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 1.9｜2026-07-11
+  Version: 1.6｜2026-07-11
   Encrypted DNS:
    - DoT｜IPv6｜IPv4
   Policy Groups:
@@ -30,6 +30,14 @@ dns: #!replace
   prefer-h3: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+
+tun: #!replace
+  enable: true
+  stack: gvisor
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
 
   default-nameserver:
     - 223.5.5.5
