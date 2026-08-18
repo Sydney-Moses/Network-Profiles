@@ -154,8 +154,6 @@ dns: #!replace
     - '+.wechat.com'
     - '+.qq.com'
     - '+.tencent.com'
-    - '+.youtube.com'
-    - '+.googlevideo.com'
     - 'speedtest.net'
 
 profile: #!replace
