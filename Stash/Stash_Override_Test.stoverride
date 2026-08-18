@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.3
+  Version: 2.4
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
