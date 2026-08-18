@@ -66,9 +66,8 @@ dns: #!replace
       - 1.12.12.12
       - 120.53.53.53
     # Proxy Node Domain DNS Policy #
-
-    '+.googlevideo.com':
-      - https://dns.google/dns-query
+    '+.duolingo.cn':
+      - https://doh.pub/dns-query
     '+.ctcxianyu.com':
       - https://38.76.213.238:8080/dns-query
     '+.525536.xyz':
