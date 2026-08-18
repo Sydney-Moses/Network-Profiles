@@ -23,6 +23,14 @@ external-controller: ':9090'
 unified-delay: true
 tcp-concurrent: true
 
+tun: #!replace
+  enable: true
+  stack: gvisor
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+
 dns: #!replace
   enable: true
   respect-rules: true
