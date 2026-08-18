@@ -66,6 +66,12 @@ dns: #!replace
     - https://doh.pub/dns-query
 
   nameserver-policy:
+    '+.t11-a.app':
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    '+.t202511-n.icu':
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
     #WeChat
     '+.weixin.com': [https://dns.alidns.com/dns-query]
     '+.wechat.com': [https://dns.alidns.com/dns-query]
