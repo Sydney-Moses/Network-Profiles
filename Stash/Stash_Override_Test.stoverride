@@ -3,7 +3,7 @@ category: Beta
 
 desc: |-
   DNS｜Proxy Groups｜Rules
-  Version: 2.7
+  Version: 2.2｜2026-8-16
   Encrypted DNS:
    - DoH｜IPv6｜IPv4
   Policy Groups:
@@ -23,14 +23,6 @@ external-controller: '127.0.0.1:9090'
 unified-delay: true
 tcp-concurrent: true
 
-tun: #!replace
-  enable: true
-  stack: gvisor
-  auto-route: true
-  auto-detect-interface: true
-  dns-hijack:
-    - any:53
-
 dns: #!replace
   enable: true
   respect-rules: true
@@ -44,9 +36,19 @@ dns: #!replace
     - 119.29.29.29
     - 2400:3200::1
 
+  nameserver:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
 
+# The following fields may not be supported #
+  proxy-server-nameserver:
+    - tls://1.1.1.1:853
+    - tls://8.8.8.8:853
 
-
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+# The above rules may not take effect #
 
   nameserver-policy:
     'dns.cloudflare.com':
@@ -65,8 +67,8 @@ dns: #!replace
       - 1.12.12.12
       - 120.53.53.53
     # Proxy Node Domain DNS Policy #
-    '+.duolingo.cn':
-      - https://doh.pub/dns-query
+    'geosite:cn':
+      - https://dns.alidns.com/dns-query
     '+.ctcxianyu.com':
       - https://38.76.213.238:8080/dns-query
     '+.525536.xyz':
@@ -122,6 +124,9 @@ dns: #!replace
     '+.kgimg.com':
       - https://dns.alidns.com/dns-query
 
+  fallback:
+    - https://dns.quad9.net/dns-query
+    - https://dns.adguard-dns.com/dns-query
 
   fallback-filter:
     geoip: true
@@ -675,7 +680,6 @@ proxy-groups: #!replace
 rules: #!replace
 
   #GitHub
-  - DOMAIN-SUFFIX,duolingo.cn,PROXY-Gate
   - DOMAIN-SUFFIX,github.com,PROXY-Gate
   - DOMAIN-SUFFIX,githubusercontent.com,PROXY-Gate
   - DOMAIN-SUFFIX,githubassets.com,PROXY-Gate
