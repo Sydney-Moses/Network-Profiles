@@ -39,6 +39,8 @@ dns: #!replace
   nameserver:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
+    - tls://1.1.1.1:853
+    - tls://8.8.8.8:853
 
 # The following fields may not be supported #
   proxy-server-nameserver:
@@ -71,19 +73,6 @@ dns: #!replace
       - https://38.76.213.238:8080/dns-query
     '+.525536.xyz':
       - https://38.76.213.238:8080/dns-query
-    '+.t11-a.app':
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
-    '+.t202511-n.icu':
-      - https://dns.alidns.com/dns-query
-      - https://doh.pub/dns-query
-    # Apple
-    '+.mzstatic.com':
-      - https://dns.alidns.com/dns-query
-    '+.itunes.apple.com':
-      - https://dns.alidns.com/dns-query
-    '+.aaplimg.com':
-      - https://dns.alidns.com/dns-query
     # UnionPay
     '+.unionpay.com':
       - https://dns.alidns.com/dns-query
