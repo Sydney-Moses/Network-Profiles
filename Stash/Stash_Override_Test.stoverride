@@ -31,13 +31,6 @@ dns: #!replace
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
 
-tun: #!replace
-  enable: true
-  stack: gvisor
-  auto-route: true
-  auto-detect-interface: true
-  dns-hijack:
-    - any:53
 
   default-nameserver:
     - 223.5.5.5
