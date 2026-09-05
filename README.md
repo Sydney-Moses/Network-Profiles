@@ -161,7 +161,7 @@ Advertising
 
 ## 3. AdvertisingLite
 
-‼️**这是上一个## 2. Advertising组合的精简版，不要与上一个一起使用**‼️
+‼️**这是上一个2. Advertising组合的精简版，不要与上一个一起使用**‼️
 
 AdvertisingLite 需要同时使用：
 
