@@ -101,11 +101,18 @@ Rules/AdvertisingLite.yaml
 MRS/AdvertisingLite_Domain.mrs
 反之亦然。
 
-✅ 正确组合如下：
 
+
+✅ 正确组合如下：
 ## 1. ChinaMax
 
-ChinaMax 需要同时使用：
+ChinaMax 需要同时使用以下 3 个文件：
+
+```text
+Rules/ChinaMax.yaml
+MRS/ChinaMax_Domain.mrs
+MRS/ChinaMax_IP.mrs
+```
 
 完整组合：
 
@@ -114,9 +121,8 @@ ChinaMax
 ├── Rules/ChinaMax.yaml
 ├── MRS/ChinaMax_Domain.mrs
 └── MRS/ChinaMax_IP.mrs
-```
 
-三个文件需要全部加入配置。
+两个文件需要全部加入配置。
 
 ---
 
