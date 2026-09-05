@@ -1,3 +1,6 @@
+可以。下面我只调整 Markdown 排版、代码块闭合、标题层级、空行和列表格式，**不修改你原本的文字内容和表达**。
+
+````markdown
 # Network-Profiles
 
 网络分流规则资源整理与 MRS 格式转换。
@@ -7,7 +10,7 @@
 - `Rules/`：YAML 格式规则
 - `MRS/`：Mihomo MRS 格式规则
 
-‼️本仓库中的规则需要按照对应的 YAML 与 MRS 文件进行组合使用‼️
+‼️本仓库中的规则需要按照对应的 YAML 与 MRS 文件进行组合使用‼️  
 ‼️请仔细阅读第三部分说明‼️
 
 # 一、规则来源
@@ -25,6 +28,7 @@ https://github.com/blackmatrix7/ios_rule_script
 https://github.com/blackmatrix7/ios_rule_script/tree/master/rule
 
 本仓库目前包含以下规则：
+
 - ChinaMax
 - Advertising
 - AdvertisingLite
@@ -32,6 +36,7 @@ https://github.com/blackmatrix7/ios_rule_script/tree/master/rule
 - Apple
 
 本仓库不是上述项目的官方仓库。
+
 第三方规则的原始内容、作者署名、数据来源、许可证及其他相关权利，以相应上游项目及相关权利人的当前说明为准。
 
 本仓库主要进行：
@@ -71,10 +76,14 @@ Network-Profiles/
 请不要只添加 YAML 或只添加 MRS。
 
 ---
-⚠️ 注意！
+
+⚠️ **注意！**
+
 AdvertisingLite 是 Advertising 规则的精简版。
 
 也就是说：
+
+```text
 Advertising组合
 ├── Rules/Advertising.yaml
 └── MRS/Advertising_Domain.mrs
@@ -85,6 +94,7 @@ AdvertisingLite组合
 ├── Rules/AdvertisingLite.yaml
 └── MRS/AdvertisingLite_Domain.mrs
 ```
+
 `AdvertisingLite` 与 `Advertising` 存在规则重叠。
 
 因此：
@@ -94,16 +104,25 @@ AdvertisingLite组合
 二者选择其中一套即可：
 
 如果已经使用：
+
+```text
 Rules/Advertising.yaml
 MRS/Advertising_Domain.mrs
-❌ 不要再添加：
+```
+
+❌ **不要再添加：**
+
+```text
 Rules/AdvertisingLite.yaml
 MRS/AdvertisingLite_Domain.mrs
+```
+
 反之亦然。
 
+---
 
+✅ **正确组合如下：**
 
-✅ 正确组合如下：
 ## 1. ChinaMax
 
 ChinaMax 需要同时使用以下 3 个文件：
@@ -121,6 +140,7 @@ ChinaMax
 ├── Rules/ChinaMax.yaml
 ├── MRS/ChinaMax_Domain.mrs
 └── MRS/ChinaMax_IP.mrs
+```
 
 两个文件需要全部加入配置。
 
@@ -143,7 +163,8 @@ Advertising
 ---
 
 ## 3. AdvertisingLite
-‼️这是上一个## 2. Advertising组合的精简版，不要与上一个一起使用‼️
+
+‼️**这是上一个## 2. Advertising组合的精简版，不要与上一个一起使用**‼️
 
 AdvertisingLite 需要同时使用：
 
@@ -162,8 +183,6 @@ AdvertisingLite
 ## 4. Privacy
 
 Privacy 需要同时使用：
-
-```
 
 完整组合：
 
@@ -411,3 +430,6 @@ MRS 格式转换
 规则目录：
 
 [https://github.com/blackmatrix7/ios_rule_script/tree/master/rule](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule)
+
+```
+```
