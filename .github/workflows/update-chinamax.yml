@@ -16,9 +16,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare MRS directory
+      # =========================
+      # Prepare directories
+      # =========================
+
+      - name: Prepare directories
         run: |
           mkdir -p MRS
+          mkdir -p Rules
 
       - name: Download Mihomo
         run: |
@@ -26,6 +31,30 @@ jobs:
             https://github.com/MetaCubeX/mihomo/releases/download/v1.19.30/mihomo-linux-amd64-v1-v1.19.30.gz
           gzip -d mihomo.gz
           chmod +x mihomo
+
+      # =========================
+      # Original YAML Rules
+      # =========================
+      # These files are kept in their original YAML format
+      # and are not converted to MRS.
+      # =========================
+
+      - name: Download Original YAML Rules
+        run: |
+          wget -O Rules/ChinaMax.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax.yaml
+
+          wget -O Rules/AdvertisingLite.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml
+
+          wget -O Rules/Advertising.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising.yaml
+
+          wget -O Rules/Privacy.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy.yaml
+
+          wget -O Rules/Apple.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml
 
       # =========================
       # ChinaMax
@@ -127,12 +156,12 @@ jobs:
       # Commit
       # =========================
 
-      - name: Commit MRS
+      - name: Commit Rules
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add MRS/*.mrs
+          git add MRS/*.mrs Rules/*.yaml
 
           git diff --cached --quiet || git commit -m "Update rules MRS"
 
