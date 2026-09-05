@@ -2,12 +2,13 @@
 
 网络分流规则资源整理与 MRS 格式转换。
 
-本仓库主要提供两类规则资源：
+本自动化仓库主要提供两类规则资源：
 
 - `Rules/`：YAML 格式规则
 - `MRS/`：Mihomo MRS 格式规则
 
-‼️本仓库中的规则需要按照对应的 YAML 与 MRS 文件进行组合使用。‼️
+‼️本仓库中的规则需要按照对应的 YAML 与 MRS 文件进行组合使用‼️
+‼️请仔细阅读第三部分说明‼️
 
 # 一、规则来源
 
@@ -74,13 +75,13 @@ Network-Profiles/
 AdvertisingLite 是 Advertising 规则的精简版。
 
 也就是说：
-Advertising
+Advertising组合
 ├── Rules/Advertising.yaml
 └── MRS/Advertising_Domain.mrs
 
         ↓ 精简版
 
-AdvertisingLite
+AdvertisingLite组合
 ├── Rules/AdvertisingLite.yaml
 └── MRS/AdvertisingLite_Domain.mrs
 ```
@@ -88,7 +89,7 @@ AdvertisingLite
 
 因此：
 
-**不要同时使用 Advertising 和 AdvertisingLite。**
+**‼️不要同时使用 Advertising组合 和 AdvertisingLite组合。‼️**
 
 二者选择其中一套即可：
 
@@ -106,12 +107,6 @@ MRS/AdvertisingLite_Domain.mrs
 
 ChinaMax 需要同时使用：
 
-```text
-Rules/ChinaMax.yaml
-MRS/ChinaMax_Domain.mrs
-MRS/ChinaMax_IP.mrs
-```
-
 完整组合：
 
 ```text
@@ -121,16 +116,6 @@ ChinaMax
 └── MRS/ChinaMax_IP.mrs
 ```
 
-其中：
-
-```text
-Rules/ChinaMax.yaml
-+
-MRS/ChinaMax_Domain.mrs
-+
-MRS/ChinaMax_IP.mrs
-```
-
 三个文件需要全部加入配置。
 
 ---
@@ -138,11 +123,6 @@ MRS/ChinaMax_IP.mrs
 ## 2. Advertising
 
 Advertising 需要同时使用：
-
-```text
-Rules/Advertising.yaml
-MRS/Advertising_Domain.mrs
-```
 
 完整组合：
 
@@ -157,13 +137,9 @@ Advertising
 ---
 
 ## 3. AdvertisingLite
+‼️这是上一个## 2. Advertising组合的精简版，不要与上一个一起使用‼️
 
 AdvertisingLite 需要同时使用：
-
-```text
-Rules/AdvertisingLite.yaml
-MRS/AdvertisingLite_Domain.mrs
-```
 
 完整组合：
 
@@ -181,9 +157,6 @@ AdvertisingLite
 
 Privacy 需要同时使用：
 
-```text
-Rules/Privacy.yaml
-MRS/Privacy_Domain.mrs
 ```
 
 完整组合：
@@ -201,11 +174,6 @@ Privacy
 ## 5. Apple
 
 Apple 需要同时使用：
-
-```text
-Rules/Apple.yaml
-MRS/Apple_Domain.mrs
-```
 
 完整组合：
 
@@ -252,101 +220,7 @@ Apple
 
 ---
 
-# 五、规则配置
-
-将同一规则对应的文件加入客户端后，应将它们指向相同的策略。
-
-例如 Advertising：
-
-```text
-Rules/Advertising.yaml
-        ↓
-Advertising
-        ↓
-REJECT
-
-MRS/Advertising_Domain.mrs
-        ↓
-Advertising-Domain
-        ↓
-REJECT
-```
-
-AdvertisingLite：
-
-```text
-Rules/AdvertisingLite.yaml
-        ↓
-AdvertisingLite
-        ↓
-REJECT
-
-MRS/AdvertisingLite_Domain.mrs
-        ↓
-AdvertisingLite-Domain
-        ↓
-REJECT
-```
-
-Privacy：
-
-```text
-Rules/Privacy.yaml
-        ↓
-Privacy
-        ↓
-REJECT
-
-MRS/Privacy_Domain.mrs
-        ↓
-Privacy-Domain
-        ↓
-REJECT
-```
-
-ChinaMax：
-
-```text
-Rules/ChinaMax.yaml
-        ↓
-ChinaMax
-        ↓
-DIRECT
-
-MRS/ChinaMax_Domain.mrs
-        ↓
-ChinaMax-Domain
-        ↓
-DIRECT
-
-MRS/ChinaMax_IP.mrs
-        ↓
-ChinaMax-IP
-        ↓
-DIRECT
-```
-
-Apple：
-
-```text
-Rules/Apple.yaml
-        ↓
-Apple
-        ↓
-DIRECT
-
-MRS/Apple_Domain.mrs
-        ↓
-Apple-Domain
-        ↓
-DIRECT
-```
-
-以上只是策略配置示例，实际使用时可以根据自己的分流需求将规则指向不同策略。
-
----
-
-# 六、YAML 与 MRS
+# 五、YAML 与 MRS
 
 本仓库中的 YAML 与 MRS 文件属于同一规则体系的不同组成部分。
 
@@ -419,7 +293,7 @@ GitHub Actions
 Rules/
 ```
 
-需要生成 MRS 的规则：
+自动需要生成 MRS 的规则：
 
 ```text
 上游规则
@@ -531,8 +405,3 @@ MRS 格式转换
 规则目录：
 
 [https://github.com/blackmatrix7/ios_rule_script/tree/master/rule](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule)
-
-```
-
-这版的组合关系就统一了：**5 套规则全部按照“YAML + MRS”来写，ChinaMax 是“YAML + Domain MRS + IP MRS”。** 不再出现“或者使用 MRS”“二选一”这种容易误导群友的表述。
-```
