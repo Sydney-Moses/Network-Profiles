@@ -1,0 +1,139 @@
+name: Update Rules MRS
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare MRS directory
+        run: |
+          mkdir -p MRS
+
+      - name: Download Mihomo
+        run: |
+          wget -O mihomo.gz \
+            https://github.com/MetaCubeX/mihomo/releases/download/v1.19.30/mihomo-linux-amd64-v1-v1.19.30.gz
+          gzip -d mihomo.gz
+          chmod +x mihomo
+
+      # =========================
+      # ChinaMax
+      # =========================
+
+      - name: Download ChinaMax Domain
+        run: |
+          wget -O ChinaMax_Domain.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
+
+      - name: Download ChinaMax IP
+        run: |
+          wget -O ChinaMax_IP.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_IP.yaml
+
+      - name: Remove ChinaMax IP ASN
+        run: |
+          sed -i "/^[[:space:]]*-[[:space:]]*['\"]\?132203['\"]\?[[:space:]]*$/d" ChinaMax_IP.yaml
+
+      - name: Convert ChinaMax Domain
+        run: |
+          ./mihomo convert-ruleset \
+            domain yaml \
+            ChinaMax_Domain.yaml \
+            MRS/ChinaMax_Domain.mrs
+
+      - name: Convert ChinaMax IP
+        run: |
+          ./mihomo convert-ruleset \
+            ipcidr yaml \
+            ChinaMax_IP.yaml \
+            MRS/ChinaMax_IP.mrs
+
+      # =========================
+      # Privacy
+      # =========================
+
+      - name: Download Privacy Domain
+        run: |
+          wget -O Privacy_Domain.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy_Domain.yaml
+
+      - name: Convert Privacy Domain
+        run: |
+          ./mihomo convert-ruleset \
+            domain yaml \
+            Privacy_Domain.yaml \
+            MRS/Privacy_Domain.mrs
+
+      # =========================
+      # Advertising
+      # =========================
+
+      - name: Download Advertising Domain
+        run: |
+          wget -O Advertising_Domain.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising_Domain.yaml
+
+      - name: Convert Advertising Domain
+        run: |
+          ./mihomo convert-ruleset \
+            domain yaml \
+            Advertising_Domain.yaml \
+            MRS/Advertising_Domain.mrs
+
+      # =========================
+      # AdvertisingLite
+      # =========================
+
+      - name: Download AdvertisingLite Domain
+        run: |
+          wget -O AdvertisingLite_Domain.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.yaml
+
+      - name: Convert AdvertisingLite Domain
+        run: |
+          ./mihomo convert-ruleset \
+            domain yaml \
+            AdvertisingLite_Domain.yaml \
+            MRS/AdvertisingLite_Domain.mrs
+
+      # =========================
+      # Apple
+      # =========================
+
+      - name: Download Apple Domain
+        run: |
+          wget -O Apple_Domain.yaml \
+            https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Domain.yaml
+
+      - name: Convert Apple Domain
+        run: |
+          ./mihomo convert-ruleset \
+            domain yaml \
+            Apple_Domain.yaml \
+            MRS/Apple_Domain.mrs
+
+      # =========================
+      # Commit
+      # =========================
+
+      - name: Commit MRS
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add MRS/*.mrs
+
+          git diff --cached --quiet || git commit -m "Update rules MRS"
+
+          git push
