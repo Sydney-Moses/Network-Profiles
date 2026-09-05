@@ -29,6 +29,7 @@ https://github.com/blackmatrix7/ios_rule_script/tree/master/rule
 - AdvertisingLite
 - Privacy
 - Apple
+
 本仓库不是上述项目的官方仓库。
 第三方规则的原始内容、作者署名、数据来源、许可证及其他相关权利，以相应上游项目及相关权利人的当前说明为准。
 
