@@ -24,7 +24,7 @@ proxy-providers:
     # 将下面的地址替换为你的机场订阅地址
     url: #xxxxxxxxxx
 
-    interval: 600
+    interval: 86400
 
 
 
@@ -263,7 +263,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
     filter: '(?i)(\[US\]|^US$|USA|United States|\bUS\b|美国)'
     url: http://www.gstatic.com/generate_204
-    interval: 600
+    interval: 900
     tolerance: 50
 
 
@@ -279,7 +279,7 @@ proxy-groups:
 
     url: http://www.gstatic.com/generate_204
 
-    interval: 600
+    interval: 900
 
     tolerance: 50
 
@@ -296,7 +296,7 @@ proxy-groups:
 
     url: http://www.gstatic.com/generate_204
 
-    interval: 600
+    interval: 900
 
     tolerance: 50
 
@@ -313,7 +313,7 @@ proxy-groups:
 
     url: http://www.gstatic.com/generate_204
 
-    interval: 600
+    interval: 900
 
     tolerance: 50
 
@@ -330,7 +330,7 @@ proxy-groups:
 
     url: http://www.gstatic.com/generate_204
 
-    interval: 600
+    interval: 900
 
     tolerance: 50
 
@@ -348,7 +348,7 @@ proxy-groups:
 
     url: http://www.gstatic.com/generate_204
 
-    interval: 600
+    interval: 900
 
     tolerance: 50
 
@@ -366,7 +366,7 @@ proxy-groups:
 
     url: http://www.gstatic.com/generate_204
 
-    interval: 600
+    interval: 900
 
     tolerance: 50
 
@@ -385,7 +385,7 @@ proxy-groups:
 
     url: http://www.gstatic.com/generate_204
 
-    interval: 600
+    interval: 900
 
     tolerance: 50
 
@@ -404,7 +404,7 @@ proxy-groups:
 
     url: http://www.gstatic.com/generate_204
 
-    interval: 600
+    interval: 900
 
     tolerance: 50
 
