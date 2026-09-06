@@ -1,11 +1,11 @@
 proxy-providers:
   Primary-VPS:
     type: http
-    url: #一号链接
+    url: #一号链接！删除此处文字和#号！并粘贴你的订阅链接！
     interval: 600
   Backup-VPS:
     type: http
-    url: #二号链接
+    url: #二号链接！删除此处文字和#号！并粘贴你的订阅链接！
     interval: 600
 mixed-port: 7890
 allow-lan: false
