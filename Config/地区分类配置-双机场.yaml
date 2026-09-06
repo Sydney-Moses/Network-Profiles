@@ -257,7 +257,7 @@ proxy-groups:
       - ⚙️ 🇺🇸 Primary-US-Auto
       - ⚙️ 🇺🇸 Backup-US-Auto
     url: http://www.gstatic.com/generate_204
-    interval: 1200
+    interval: 900
     timeout: 15
 
   - name: 🇸🇬 SG-Fallback
@@ -267,7 +267,7 @@ proxy-groups:
       - ⚙️ 🇸🇬 Primary-SG-Auto
       - ⚙️ 🇸🇬 Backup-SG-Auto
     url: http://www.gstatic.com/generate_204
-    interval: 1200
+    interval: 900
     timeout: 15
 
   - name: 🇭🇰 HK-Fallback
@@ -277,7 +277,7 @@ proxy-groups:
       - ⚙️ 🇭🇰 Primary-HK-Auto
       - ⚙️ 🇭🇰 Backup-HK-Auto
     url: http://www.gstatic.com/generate_204
-    interval: 1200
+    interval: 900
     timeout: 15
 
   - name: 🇯🇵 JP-Fallback
@@ -287,7 +287,7 @@ proxy-groups:
       - ⚙️ 🇯🇵 Primary-JP-Auto
       - ⚙️ 🇯🇵 Backup-JP-Auto
     url: http://www.gstatic.com/generate_204
-    interval: 1200
+    interval: 900
     timeout: 15
 
   - name: 🇹🇼 TW-Fallback
@@ -297,7 +297,7 @@ proxy-groups:
       - ⚙️ 🇹🇼 Primary-TW-Auto
       - ⚙️ 🇹🇼 Backup-TW-Auto
     url: http://www.gstatic.com/generate_204
-    interval: 1200
+    interval: 900
     timeout: 15
 
   - name: 🇬🇧 UK-Fallback
@@ -307,7 +307,7 @@ proxy-groups:
       - ⚙️ 🇬🇧 Primary-UK-Auto
       - ⚙️ 🇬🇧 Backup-UK-Auto
     url: http://www.gstatic.com/generate_204
-    interval: 1200
+    interval: 900
     timeout: 15
 
   - name: 🇩🇪 DE-Fallback
@@ -317,7 +317,7 @@ proxy-groups:
       - ⚙️ 🇩🇪 Primary-DE-Auto
       - ⚙️ 🇩🇪 Backup-DE-Auto
     url: http://www.gstatic.com/generate_204
-    interval: 1200
+    interval: 900
     timeout: 15
 
   - name: 🇫🇷 FR-Fallback
@@ -327,7 +327,7 @@ proxy-groups:
       - ⚙️ 🇫🇷 Primary-FR-Auto
       - ⚙️ 🇫🇷 Backup-FR-Auto
     url: http://www.gstatic.com/generate_204
-    interval: 1200
+    interval: 900
     timeout: 15
 
   - name: 🇳🇱 NL-Fallback
@@ -337,7 +337,7 @@ proxy-groups:
       - ⚙️ 🇳🇱 Primary-NL-Auto
       - ⚙️ 🇳🇱 Backup-NL-Auto
     url: http://www.gstatic.com/generate_204
-    interval: 1200
+    interval: 900
     timeout: 15
 
   - name: APNs-Fallback
@@ -347,6 +347,7 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png
     url: http://captive.apple.com/hotspot-detect.html
     interval: 300
+
   - name: ⚙️ 🇺🇸 Primary-US-Auto
     type: url-test
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
