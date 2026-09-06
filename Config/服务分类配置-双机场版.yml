@@ -2,11 +2,13 @@ proxy-providers:
   Primary-VPS:
     type: http
     url: #一号链接！删除此处文字和#号！并粘贴你的订阅链接！
-    interval: 600
+    interval: 86400
   Backup-VPS:
     type: http
     url: #二号链接！删除此处文字和#号！并粘贴你的订阅链接！
-    interval: 600
+    interval: 86400
+
+
 mixed-port: 7890
 allow-lan: false
 bind-address: '*'
@@ -407,7 +409,7 @@ proxy-groups:
   - 🇺🇸 US-Auto-1
   - 🇺🇸 US-Auto-2
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
 - name: 🇸🇬 SG-Fallback
@@ -416,7 +418,7 @@ proxy-groups:
   - 🇸🇬 SG-Auto-1
   - 🇸🇬 SG-Auto-2
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
 - name: 🇭🇰 HK-Fallback
@@ -425,7 +427,7 @@ proxy-groups:
   - 🇭🇰 HK-Auto-1
   - 🇭🇰 HK-Auto-2
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
 - name: 🇯🇵 JP-Fallback
@@ -434,7 +436,7 @@ proxy-groups:
   - 🇯🇵 JP-Auto-1
   - 🇯🇵 JP-Auto-2
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
 - name: 🇹🇼 TW-Fallback
@@ -443,7 +445,7 @@ proxy-groups:
   - 🇹🇼 TW-Auto-1
   - 🇹🇼 TW-Auto-2
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Taiwan.png
 - name: 🇬🇧 UK-Fallback
@@ -452,7 +454,7 @@ proxy-groups:
   - 🇬🇧 UK-Auto-1
   - 🇬🇧 UK-Auto-2
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png
 - name: 🇩🇪 DE-Fallback
@@ -461,7 +463,7 @@ proxy-groups:
   - 🇩🇪 DE-Auto-1
   - 🇩🇪 DE-Auto-2
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
 - name: 🇫🇷 FR-Fallback
@@ -470,7 +472,7 @@ proxy-groups:
   - 🇫🇷 FR-Auto-1
   - 🇫🇷 FR-Auto-2
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/France.png
 - name: 🇷🇺 RU-Fallback
@@ -479,9 +481,10 @@ proxy-groups:
   - 🇷🇺 RU-Auto-1
   - 🇷🇺 RU-Auto-2
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png
+
 - name: APNs-Fallback
   type: fallback
   include-all: true
@@ -489,6 +492,8 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Apple.png
   url: http://captive.apple.com/hotspot-detect.html
   interval: 300
+
+
 - name: 🇺🇸 US-Auto-1
   type: url-test
   use:
@@ -496,7 +501,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
   filter: (?i)(🇺🇸|美国|美國|United[ _-]?States|USA|\bUS\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇺🇸 US-Auto-2
   type: url-test
@@ -505,7 +510,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png
   filter: (?i)(🇺🇸|美国|美國|United[ _-]?States|USA|\bUS\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇸🇬 SG-Auto-1
   type: url-test
@@ -514,7 +519,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
   filter: (?i)(🇸🇬|新加坡|Singapore|\bSG\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇸🇬 SG-Auto-2
   type: url-test
@@ -523,7 +528,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png
   filter: (?i)(🇸🇬|新加坡|Singapore|\bSG\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇭🇰 HK-Auto-1
   type: url-test
@@ -532,7 +537,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
   filter: (?i)(🇭🇰|香港|Hong[ _-]?Kong|\bHK\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇭🇰 HK-Auto-2
   type: url-test
@@ -541,7 +546,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png
   filter: (?i)(🇭🇰|香港|Hong[ _-]?Kong|\bHK\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇯🇵 JP-Auto-1
   type: url-test
@@ -550,7 +555,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
   filter: (?i)(🇯🇵|日本|Japan|\bJP\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇯🇵 JP-Auto-2
   type: url-test
@@ -559,7 +564,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png
   filter: (?i)(🇯🇵|日本|Japan|\bJP\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇹🇼 TW-Auto-1
   type: url-test
@@ -568,7 +573,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Taiwan.png
   filter: (?i)(🇹🇼|台湾|臺灣|Taiwan|\bTW\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇹🇼 TW-Auto-2
   type: url-test
@@ -577,7 +582,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Taiwan.png
   filter: (?i)(🇹🇼|台湾|臺灣|Taiwan|\bTW\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇬🇧 UK-Auto-1
   type: url-test
@@ -586,7 +591,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png
   filter: (?i)(🇬🇧|英国|英國|United[ _-]?Kingdom|England|\bUK\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇬🇧 UK-Auto-2
   type: url-test
@@ -595,7 +600,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png
   filter: (?i)(🇬🇧|英国|英國|United[ _-]?Kingdom|England|\bUK\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇩🇪 DE-Auto-1
   type: url-test
@@ -604,7 +609,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
   filter: (?i)(🇩🇪|德国|德國|Germany|Deutschland|\bDE\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇩🇪 DE-Auto-2
   type: url-test
@@ -613,7 +618,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png
   filter: (?i)(🇩🇪|德国|德國|Germany|Deutschland|\bDE\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇫🇷 FR-Auto-1
   type: url-test
@@ -622,7 +627,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/France.png
   filter: (?i)(🇫🇷|法国|法國|France|\bFR\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇫🇷 FR-Auto-2
   type: url-test
@@ -631,7 +636,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/France.png
   filter: (?i)(🇫🇷|法国|法國|France|\bFR\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇷🇺 RU-Auto-1
   type: url-test
@@ -640,7 +645,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png
   filter: (?i)(🇷🇺|俄罗斯|俄羅斯|Russia|\bRU\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 - name: 🇷🇺 RU-Auto-2
   type: url-test
@@ -649,7 +654,7 @@ proxy-groups:
   icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png
   filter: (?i)(🇷🇺|俄罗斯|俄羅斯|Russia|\bRU\b)
   url: http://www.gstatic.com/generate_204
-  interval: 600
+  interval: 900
   tolerance: 50
 rules:
 - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
