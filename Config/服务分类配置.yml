@@ -511,9 +511,10 @@ rules:
 
 - RULE-SET,Apple,DIRECT
 - RULE-SET,Apple_Domain,DIRECT
-
-- RULE-SET,Advertising,REJECT
-- RULE-SET,Advertising_Domain,REJECT
+- RULE-SET,AdvertisingLite,REJECT
+- RULE-SET,AdvertisingLite_Domain,REJECT
+- RULE-SET,Privacy,REJECT
+- RULE-SET,Privacy_Domain,REJECT
 - RULE-SET,ACL4SSR_BanAD,REJECT
 - RULE-SET,ACL4SSR_BanProgramAD,REJECT
 
@@ -769,18 +770,32 @@ rule-providers:
     format: mrs
     interval: 86400
     url: https://raw.githubusercontent.com/Sydney-Moses/Network-Profiles/refs/heads/main/MRS/Apple_Domain.mrs
-  Advertising:
+
+  AdvertisingLite:
     type: http
     behavior: classical
     format: yaml
     interval: 86400
-    url: https://raw.githubusercontent.com/Sydney-Moses/Network-Profiles/refs/heads/main/Rules/Advertising.yaml
-  Advertising_Domain:
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AdvertisingLite/AdvertisingLite.yaml
+  AdvertisingLite_Domain:
     type: http
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/Sydney-Moses/Network-Profiles/refs/heads/main/MRS/Advertising_Domain.mrs
+    url: https://raw.githubusercontent.com/Sydney-Moses/Network-Profiles/refs/heads/main/MRS/AdvertisingLite_Domain.mrs
+  Privacy:
+    type: http
+    behavior: classical
+    format: yaml
+    interval: 86400
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Privacy/Privacy.yaml
+  Privacy_Domain:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: https://raw.githubusercontent.com/Sydney-Moses/Network-Profiles/refs/heads/main/MRS/Privacy_Domain.mrs
+
   ACL4SSR_BanAD:
     type: http
     behavior: domain
