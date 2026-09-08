@@ -15,7 +15,7 @@ function main(config) {
     ? config.proxies
     : [];
 
-  // 以下为固定配置，来源于原《服务分类配置 (1)(1).yml》。
+  // 以下为固定配置，来源于原《服务分类配置.yml》。
   const fixed = {
   "mixed-port": 7890,
   "allow-lan": false,
@@ -452,8 +452,8 @@ function main(config) {
         "PROXY-Gate",
         "DIRECT"
       ]
-    },   
-	    {
+    },
+    {
       "name": "APNs-Fallback",
       "type": "fallback",
       "proxies": [
@@ -680,7 +680,7 @@ function main(config) {
     "DOMAIN,rum.browser-intake-datadoghq.com,GPT",
     "DOMAIN,challenges.cloudflare.com,GPT",
     "DOMAIN,humb.apple.com,GPT",
-	    "DOMAIN-SUFFIX,gemini.google.com,Gemini",
+    "DOMAIN-SUFFIX,gemini.google.com,Gemini",
     "DOMAIN-SUFFIX,aistudio.google.com,Gemini",
     "DOMAIN-SUFFIX,deepmind.com,Gemini",
     "DOMAIN-SUFFIX,deepmind.google,Gemini",
@@ -813,7 +813,7 @@ function main(config) {
       "interval": 86400,
       "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/mrs/BanProgramAD_domain.mrs"
     },
-	    "ChinaMax": {
+    "ChinaMax": {
       "type": "http",
       "behavior": "classical",
       "format": "yaml",
@@ -836,6 +836,79 @@ function main(config) {
     }
   }
   };
+
+  // 根据实际节点动态生成/保留地区 Auto 组：
+  // 某地区没有任何匹配节点时，不生成该地区 Auto 组；
+  // 同时从其他策略组中移除对不存在地区组的引用。
+  const regionGroups = [
+    {
+      name: "🇺🇸 US-Auto",
+      filter: /(\[US\]|^US$|USA|United States|\bUS\b|美国)/i
+    },
+    {
+      name: "🇸🇬 SG-Auto",
+      filter: /(\[SG\]|^SG$|Singapore|\bSG\b|新加坡|狮城)/i
+    },
+    {
+      name: "🇭🇰 HK-Auto",
+      filter: /(\[HK\]|^HK$|Hong Kong|\bHK\b|香港|🇨🇳香港)/i
+    },
+    {
+      name: "🇯🇵 JP-Auto",
+      filter: /(\[JP\]|^JP$|Japan|\bJP\b|日本|东京|大阪|🇯🇵日本)/i
+    },
+    {
+      name: "🇹🇼 TW-Auto",
+      filter: /(\[TW\]|^TW$|Taiwan|Taibei|\bTW\b|台湾|台北|🇹🇼)/i
+    },
+    {
+      name: "🇬🇧 UK-Auto",
+      filter: /(\[UK\]|^UK$|UK|United Kingdom|Britain|\bUK\b|英国|伦敦)/i
+    },
+    {
+      name: "🇩🇪 DE-Auto",
+      filter: /(\[DE\]|^DE$|Germany|Deutschland|\bDE\b|德国|法兰克福)/i
+    },
+    {
+      name: "🇫🇷 FR-Auto",
+      filter: /(\[FR\]|^FR$|France|\bFR\b|法国|巴黎)/i
+    },
+    {
+      name: "🇷🇺 RU-Auto",
+      filter: /(\[RU\]|^RU$|Russia|Russian Federation|\bRU\b|俄罗斯|莫斯科|伯力)/i
+    }
+  ];
+
+  const existingRegionGroups = new Set();
+
+  fixed["proxy-groups"] = fixed["proxy-groups"].filter(group => {
+    const region = regionGroups.find(item => item.name === group.name);
+
+    if (!region) return true;
+
+    const hasNodes = proxies.some(proxy =>
+      proxy &&
+      typeof proxy.name === "string" &&
+      region.filter.test(proxy.name)
+    );
+
+    if (hasNodes) {
+      existingRegionGroups.add(region.name);
+      return true;
+    }
+
+    return false;
+  });
+
+  // 清理所有策略组中已经不存在的地区 Auto 组引用。
+  fixed["proxy-groups"].forEach(group => {
+    if (Array.isArray(group.proxies)) {
+      group.proxies = group.proxies.filter(proxyName =>
+        existingRegionGroups.has(proxyName) ||
+        !regionGroups.some(region => region.name === proxyName)
+      );
+    }
+  });
 
   // 将机场订阅解析后的全部节点注入统一配置。
   fixed.proxies = proxies;
