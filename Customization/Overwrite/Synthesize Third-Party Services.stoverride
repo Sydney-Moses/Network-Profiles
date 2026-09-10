@@ -1,22 +1,172 @@
 name: Synthesize Third-Party Services
+
 icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google.png
+
 category: Private
 
 desc: |-
-  Third-Party Services
-  Google Availability Test
+  Synthesize Third-Party Services
+  19 Service Availability Tests
+  Detection Interval: 1 Hour
+  Request Timeout: 10 Seconds
 
 script-providers:
 
-  Google-Availability:
+  Service-Availability:
     interval: 86400
-    url: https://raw.githubusercontent.com/Sydney-Moses/Network-Profiles/refs/heads/main/Customization/JS/Google.js
+    url: https://raw.githubusercontent.com/Sydney-Moses/Network-Profiles/refs/heads/main/Customization/JS/Service-Availability.js
+
 
 tiles:
 
-  - name: Google-Availability
-    interval: 30
+  - name: Service-Availability
+    argument: 'YouTube'
+    interval: 3600
+    title: 'YouTube'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/YouTube.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Netflix'
+    interval: 3600
+    title: 'Netflix'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Netflix.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Disney+'
+    interval: 3600
+    title: 'Disney+'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Disney+.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Spotify'
+    interval: 3600
+    title: 'Spotify'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Spotify.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'TikTok'
+    interval: 3600
+    title: 'TikTok'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Twitch'
+    interval: 3600
+    title: 'Twitch'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Twitch.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'GPT'
+    interval: 3600
+    title: 'GPT'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/openai.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Gemini'
+    interval: 3600
+    title: 'Gemini'
+    content: '检测中'
+    icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-gemini.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Claude'
+    interval: 3600
+    title: 'Claude'
+    content: '检测中'
+    icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/anthropic.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Copilot'
+    interval: 3600
+    title: 'Copilot'
+    content: '检测中'
+    icon: https://cdn.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/icons/Microsoft/Copilot-1.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Grok'
+    interval: 3600
+    title: 'Grok'
+    content: '检测中'
+    icon: https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Grok.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Google'
+    interval: 3600
     title: 'Google'
     content: '检测中'
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'X'
+    interval: 3600
+    title: 'X'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/x.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Facebook'
+    interval: 3600
+    title: 'Facebook'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Instagram'
+    interval: 3600
+    title: 'Instagram'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Instagram.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'WhatsApp'
+    interval: 3600
+    title: 'WhatsApp'
+    content: '检测中'
+    icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/whatsapp.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Telegram'
+    interval: 3600
+    title: 'Telegram'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Telegram.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Github'
+    interval: 3600
+    title: 'Github'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png
+    collapsed: true
+
+  - name: Service-Availability
+    argument: 'Speedtest'
+    interval: 3600
+    title: 'Speedtest'
+    content: '检测中'
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Speedtest.png
     collapsed: true
