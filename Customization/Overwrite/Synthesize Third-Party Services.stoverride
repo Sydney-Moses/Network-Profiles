@@ -15,7 +15,7 @@ script-providers:
 tiles:
 
   - name: Google-Availability
-    interval: 600
+    interval: 30
     title: 'Google'
     content: '检测中'
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google.png
