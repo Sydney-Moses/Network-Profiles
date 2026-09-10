@@ -1,0 +1,294 @@
+const services = {
+
+  'YouTube': {
+    url: 'https://www.youtube.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/YouTube.png'
+  },
+
+  'Netflix': {
+    url: 'https://www.netflix.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Netflix.png'
+  },
+
+  'Disney+': {
+    url: 'https://www.disneyplus.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Disney+.png'
+  },
+
+  'Spotify': {
+    url: 'https://open.spotify.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Spotify.png'
+  },
+
+  'TikTok': {
+    url: 'https://www.tiktok.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok.png'
+  },
+
+  'Twitch': {
+    url: 'https://www.twitch.tv/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Twitch.png'
+  },
+
+  'GPT': {
+    url: 'https://chatgpt.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/openai.png'
+  },
+
+  'Gemini': {
+    url: 'https://gemini.google.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-gemini.png'
+  },
+
+  'Claude': {
+    url: 'https://claude.ai/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/anthropic.png'
+  },
+
+  'Copilot': {
+    url: 'https://copilot.microsoft.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://cdn.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/icons/Microsoft/Copilot-1.png'
+  },
+
+  'Grok': {
+    url: 'https://grok.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Grok.png'
+  },
+
+  'Google': {
+    url: 'https://www.gstatic.com/generate_204',
+    successCodes: [204],
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google.png'
+  },
+
+  'X': {
+    url: 'https://x.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/x.png'
+  },
+
+  'Facebook': {
+    url: 'https://www.facebook.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png'
+  },
+
+  'Instagram': {
+    url: 'https://www.instagram.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Instagram.png'
+  },
+
+  'WhatsApp': {
+    url: 'https://www.whatsapp.com/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/whatsapp.png'
+  },
+
+  'Telegram': {
+    url: 'https://web.telegram.org/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Telegram.png'
+  },
+
+  'Github': {
+    url: 'https://api.github.com/rate_limit',
+    successCodes: [200],
+    icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/GitHub.png'
+  },
+
+  'Speedtest': {
+    url: 'https://www.speedtest.net/',
+    successMin: 200,
+    successMax: 399,
+    icon: 'https://cdn.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Speedtest.png'
+  }
+
+}
+
+
+// ------------------------------------------------------------
+// Read service name from Tile argument
+// ------------------------------------------------------------
+
+const serviceName = String($argument || '').trim()
+const service = services[serviceName]
+
+if (!service) {
+
+  console.log(
+    '[Third-Party] Unknown service:',
+    serviceName
+  )
+
+  $done({
+    title: serviceName || 'Third-Party',
+    content: '配置错误'
+  })
+
+  return
+}
+
+
+// ------------------------------------------------------------
+// Request
+// ------------------------------------------------------------
+
+const startTime = Date.now()
+
+$httpClient.get(
+  {
+    url: service.url,
+
+    timeout: 10,
+
+    headers: {
+      'User-Agent':
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile/15E148 Safari/604.1'
+    },
+
+    // Use the corresponding existing service strategy group.
+    'X-Stash-Selected-Proxy':
+      encodeURIComponent(serviceName)
+  },
+
+  (error, response, data) => {
+
+    const elapsed = Date.now() - startTime
+
+
+    // ----------------------------------------------------------
+    // Network-level error
+    // ----------------------------------------------------------
+
+    if (error) {
+
+      const errorText = String(error).toLowerCase()
+
+      console.log(
+        '[' + serviceName + '] Request Error:',
+        error
+      )
+
+      if (
+        errorText.includes('timeout') ||
+        errorText.includes('timed out')
+      ) {
+
+        $done({
+          title: serviceName,
+          content: '超时 · 10.0 s',
+          icon: service.icon
+        })
+
+      } else {
+
+        $done({
+          title: serviceName,
+          content: '连接失败',
+          icon: service.icon
+        })
+
+      }
+
+      return
+    }
+
+
+    // ----------------------------------------------------------
+    // No HTTP response
+    // ----------------------------------------------------------
+
+    if (!response || typeof response.status !== 'number') {
+
+      console.log(
+        '[' + serviceName + '] Invalid Response:',
+        response
+      )
+
+      $done({
+        title: serviceName,
+        content: '连接失败',
+        icon: service.icon
+      })
+
+      return
+    }
+
+
+    const status = response.status
+
+
+    // ----------------------------------------------------------
+    // Success
+    // ----------------------------------------------------------
+
+    let success = false
+
+    if (service.successCodes) {
+
+      success = service.successCodes.includes(status)
+
+    } else {
+
+      success =
+        status >= service.successMin &&
+        status <= service.successMax
+
+    }
+
+
+    if (success) {
+
+      $done({
+        title: serviceName,
+        content: '可访问 · ' + elapsed + ' ms',
+        icon: service.icon
+      })
+
+      return
+    }
+
+
+    // ----------------------------------------------------------
+    // HTTP error
+    //
+    // Do NOT write console.log here.
+    // The HTTP status itself is already informative.
+    // ----------------------------------------------------------
+
+    $done({
+      title: serviceName,
+      content: 'HTTP ' + status + ' · ' + elapsed + ' ms',
+      icon: service.icon
+    })
+
+  }
+)
