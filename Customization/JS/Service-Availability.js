@@ -173,8 +173,6 @@ if (!service) {
 
       const elapsed = Date.now() - startTime
 
-
-      // 网络错误 / DNS / 连接失败 / 超时
       if (error) {
 
         console.log(
@@ -227,7 +225,6 @@ if (!service) {
 
         let success = false
 
-
         if (service.successCodes) {
 
           success = service.successCodes.includes(status)
@@ -239,7 +236,6 @@ if (!service) {
             status <= service.successMax
 
         }
-
 
         if (success) {
 
