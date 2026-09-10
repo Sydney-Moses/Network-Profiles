@@ -1,0 +1,22 @@
+name: Synthesize Third-Party Services
+icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google.png
+category: Private
+
+desc: |-
+  Third-Party Services
+  Google Availability Test
+
+script-providers:
+
+  Google-Availability:
+    interval: 86400
+    url: https://raw.githubusercontent.com/Sydney-Moses/Network-Profiles/refs/heads/main/Customization/JS/Google.js
+
+tiles:
+
+  - name: Google-Availability
+    interval: 600
+    title: 'Google'
+    content: '检测中'
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Google.png
+    collapsed: true
