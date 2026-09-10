@@ -1,77 +1,76 @@
 const services = {
 
   YouTube: {
-    url: 'https://www.youtube.com/',
-    successMin: 200,
-    successMax: 399,
+    url: 'https://www.youtube.com/generate_204',
+    successCodes: [204],
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/YouTube.png'
   },
 
   Netflix: {
-    url: 'https://www.netflix.com/',
+    url: 'https://www.netflix.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Netflix.png'
   },
 
   'Disney+': {
-    url: 'https://www.disneyplus.com/',
+    url: 'https://www.disneyplus.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Disney+.png'
   },
 
   Spotify: {
-    url: 'https://open.spotify.com/',
+    url: 'https://open.spotify.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Spotify.png'
   },
 
   TikTok: {
-    url: 'https://www.tiktok.com/',
+    url: 'https://www.tiktok.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/TikTok.png'
   },
 
   Twitch: {
-    url: 'https://www.twitch.tv/',
+    url: 'https://www.twitch.tv/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Twitch.png'
   },
 
   GPT: {
-    url: 'https://chatgpt.com/',
+    url: 'https://chatgpt.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/openai.png'
   },
 
   Gemini: {
-    url: 'https://gemini.google.com/',
+    url: 'https://gemini.google.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-gemini.png'
   },
 
   Claude: {
-    url: 'https://claude.ai/',
+    url: 'https://claude.ai/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/anthropic.png'
   },
 
   Copilot: {
-    url: 'https://copilot.microsoft.com/',
+    url: 'https://copilot.microsoft.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://cdn.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/icons/Microsoft/Copilot-1.png'
   },
 
   Grok: {
-    url: 'https://grok.com/',
+    url: 'https://grok.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Grok.png'
@@ -84,35 +83,35 @@ const services = {
   },
 
   X: {
-    url: 'https://x.com/',
+    url: 'https://x.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash/icon/x.png'
   },
 
   Facebook: {
-    url: 'https://www.facebook.com/',
+    url: 'https://www.facebook.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Facebook.png'
   },
 
   Instagram: {
-    url: 'https://www.instagram.com/',
+    url: 'https://www.instagram.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Instagram.png'
   },
 
   WhatsApp: {
-    url: 'https://www.whatsapp.com/',
+    url: 'https://www.whatsapp.com/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/whatsapp.png'
   },
 
   Telegram: {
-    url: 'https://web.telegram.org/',
+    url: 'https://web.telegram.org/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Telegram.png'
@@ -125,7 +124,7 @@ const services = {
   },
 
   Speedtest: {
-    url: 'https://www.speedtest.net/',
+    url: 'https://www.speedtest.net/favicon.ico',
     successMin: 200,
     successMax: 399,
     icon: 'https://cdn.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Speedtest.png'
@@ -154,7 +153,7 @@ if (!service) {
 
   const startTime = Date.now()
 
-  $httpClient.get(
+  $httpClient.head(
     {
       url: service.url,
 
@@ -203,7 +202,11 @@ if (!service) {
 
         }
 
-      } else if (
+        return
+      }
+
+
+      if (
         !response ||
         typeof response.status !== 'number'
       ) {
@@ -219,41 +222,58 @@ if (!service) {
           icon: service.icon
         })
 
+        return
+      }
+
+
+      const status = response.status
+
+      let success = false
+
+      if (service.successCodes) {
+
+        success = service.successCodes.includes(status)
+
       } else {
 
-        const status = response.status
+        success =
+          status >= service.successMin &&
+          status <= service.successMax
 
-        let success = false
+      }
 
-        if (service.successCodes) {
 
-          success = service.successCodes.includes(status)
+      if (success) {
 
-        } else {
+        $done({
+          title: serviceName,
+          content: '可访问 · ' + elapsed + ' ms',
+          icon: service.icon
+        })
 
-          success =
-            status >= service.successMin &&
-            status <= service.successMax
+      } else if (status >= 400 && status <= 499) {
 
-        }
+        $done({
+          title: serviceName,
+          content: '受限 · HTTP ' + status + ' · ' + elapsed + ' ms',
+          icon: service.icon
+        })
 
-        if (success) {
+      } else if (status >= 500 && status <= 599) {
 
-          $done({
-            title: serviceName,
-            content: '可访问 · ' + elapsed + ' ms',
-            icon: service.icon
-          })
+        $done({
+          title: serviceName,
+          content: '服务器错误 · ' + status + ' · ' + elapsed + ' ms',
+          icon: service.icon
+        })
 
-        } else {
+      } else {
 
-          $done({
-            title: serviceName,
-            content: 'HTTP ' + status + ' · ' + elapsed + ' ms',
-            icon: service.icon
-          })
-
-        }
+        $done({
+          title: serviceName,
+          content: 'HTTP ' + status + ' · ' + elapsed + ' ms',
+          icon: service.icon
+        })
 
       }
 
