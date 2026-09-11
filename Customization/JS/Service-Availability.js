@@ -171,6 +171,8 @@ if (!service) {
     (error, response, data) => {
 
       const elapsed = Date.now() - startTime
+      const elapsedSeconds = (elapsed / 1000).toFixed(2)
+
 
       if (error) {
 
@@ -188,7 +190,7 @@ if (!service) {
 
           $done({
             title: serviceName,
-            content: '超时 · 10.0 s',
+            content: '超时·10.00 s',
             icon: service.icon
           })
 
@@ -230,6 +232,7 @@ if (!service) {
 
       let success = false
 
+
       if (service.successCodes) {
 
         success = service.successCodes.includes(status)
@@ -247,7 +250,7 @@ if (!service) {
 
         $done({
           title: serviceName,
-          content: '可访问 · ' + elapsed + ' ms',
+          content: '可访问·响应 ' + elapsedSeconds + ' s',
           icon: service.icon
         })
 
@@ -255,7 +258,12 @@ if (!service) {
 
         $done({
           title: serviceName,
-          content: '受限 · HTTP ' + status + ' · ' + elapsed + ' ms',
+          content:
+            'HTTP ' +
+            status +
+            '·响应 ' +
+            elapsedSeconds +
+            ' s',
           icon: service.icon
         })
 
@@ -263,7 +271,12 @@ if (!service) {
 
         $done({
           title: serviceName,
-          content: '服务器错误 · ' + status + ' · ' + elapsed + ' ms',
+          content:
+            '服务器错误·' +
+            status +
+            '·响应 ' +
+            elapsedSeconds +
+            ' s',
           icon: service.icon
         })
 
@@ -271,7 +284,12 @@ if (!service) {
 
         $done({
           title: serviceName,
-          content: 'HTTP ' + status + ' · ' + elapsed + ' ms',
+          content:
+            'HTTP ' +
+            status +
+            '·响应 ' +
+            elapsedSeconds +
+            ' s',
           icon: service.icon
         })
 
